@@ -5,8 +5,8 @@ const getAll = () => {
   const request = axios.get(`${baseURL}/books`)
   return request.then(response => response.data)
 }
-const update = (id, newContent) => {
-  const c = { newContent: newContent}
+const update = (id, newContent, newName) => {
+  const c = { newContent: newContent, name: newName}
   const request = axios.put(`${baseURL}/pages/${id}`, c)
   return request.then(response => response.data)
 }

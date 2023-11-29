@@ -33,22 +33,31 @@ const SidePanel = ({book, handlePageChange, currentPage, handleAddPage}) => {
     </div>
   )
 }
-const Content = ({page, handleUpdate,handleSave}) => {
+const Content = ({page, handleUpdate, handleSave, nameInput, handleNameInput}) => {
   return (
     <div className="content">
+      <div hidden={false}>
+        Name: <input onChange={handleNameInput} value={nameInput}/> 
+        <br />
+        <br />
+        <button onClick={()=>console.log("Delete page")}>Delete page</button>
+        <button onClick={()=>console.log("Delete book")}>Delete book</button>
+        <br />
+        <br />
+        <br />
+      </div>
       <button onClick={()=>handleSave(page.id)}>save</button>
       <TextEditor key={page.name} page={page} handleUpdate={handleUpdate}/>
     </div>
   )
 }
-const Page = ({handlePageChange, handleUpdate, handleSave, 
-  currentPage, handleAddPage, setCurrentBookByName, currentBook}) => {
+const Page = ({handlePageChange, handleUpdate, handleSave, handleNameInput,
+  nameInput, currentPage, handleAddPage, setCurrentBookByName, currentBook}) => {
   const book = useParams()
   useEffect(() => {
     setCurrentBookByName(book.book)
   })
   if(currentBook){
-    console.log(currentBook)
     return (
       <div>
           <SidePanel 
@@ -57,7 +66,7 @@ const Page = ({handlePageChange, handleUpdate, handleSave,
             currentPage={currentPage}
             handleAddPage={handleAddPage}
           />
-          <Content page={currentPage} book={currentBook} handleUpdate={handleUpdate} handleSave={handleSave}/>
+          <Content page={currentPage} book={currentBook} handleUpdate={handleUpdate} handleSave={handleSave} nameInput={nameInput} handleNameInput={handleNameInput}/>
       </div>
     )
   }

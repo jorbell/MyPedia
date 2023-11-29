@@ -11,12 +11,12 @@ app.use(express.json())
 //Initialize connection
 const sequelize = new Sequelize(
   process.env.DATABASE,
-  process.env.USER,
-  process.env.PASSWORD,
+  process.env.DBUSER,
+  process.env.DBPASSWORD,
   {
     host: process.env.HOST,
     dialect: process.env.DIALECT,
-    logging: false
+    logging:false
   }
 )
 
@@ -79,11 +79,14 @@ app.put('/api/pages', async (req, res) => {
 app.put('/api/pages/:id', async (req,res) => {
   let cid = req.params.id
   let newContent = req.body.newContent;
-  Page.update(
-    {content: newContent},
+  let newName = req.body.name
+  console.log(newName)
+  await Page.update(
+    {content: newContent, name: newName, displayname: newName},
     {where: {id: cid}}
   )
-  res.json("success")
+  const books = await Book.findAll({include: Page})
+  res.json(books)
 })
 app.listen(process.env.PORT, () => {
   console.log(`server running on port ${process.env.PORT}`)

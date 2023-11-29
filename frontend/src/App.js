@@ -11,6 +11,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState("home");
   const [currentBook, setCurrentBook] = useState({name: "home",pages: []})
   const [books, setBooks] = useState([])
+  const [nameInput, setNameInput] = useState([])
 
   //Initialize books
   useEffect(() => {
@@ -19,16 +20,26 @@ const App = () => {
       .then(kirjat => { setBooks(kirjat) })
   }, [])
   //Event handlers
-  const handleSave = (id) => { 
+  const handleSave = (id) => {
     booksService
-      .update(id, currentPage.content)
-      .then(console.log("juu"))
+      .update(id, currentPage.content, nameInput)
+      .then( response => {
+          setBooks(response)
+          console.log("Handle save ---->")
+          console.log(response.find(book => book.id === currentBook.id))
+          console.log("Handle save <----")
+        }
+      )
   }
-  const handlePage = (page) => { setCurrentPage(page) }
+  const handlePage = (page) => { 
+    setCurrentPage(page) 
+    setNameInput(page.name)
+  }
   const handleBookChange = (book) => {
     setCurrentBook(book)
     const frontpage = book.pages.find(page => page.frontpage === true)
     setCurrentPage(frontpage)
+    setNameInput(frontpage.name)
   }
   const handleUpdate = (id, content) => {
     const newPage = currentBook.pages.find(page => page.id === id)
@@ -57,55 +68,60 @@ const App = () => {
     }
   }
   const setCurrentBookByName = (name) => {
-    setCurrentBook(books.find(book => book.name === name)) 
+    setCurrentBook(books.find(book => book.name === name))
+  }
+  const handleNameInput = (event) => {
+    setNameInput(event.target.value)
   }
   return (
     <div className="App">
       <BrowserRouter>
-        <NavigationBar 
-          currentBook={currentBook} 
-          handleBookChange={handleBookChange} 
-          books={books} 
+        <NavigationBar
+          currentBook={currentBook}
+          handleBookChange={handleBookChange}
+          books={books}
           handleAddBook={handleAddBook}
         />
           <Routes>
-            <Route 
+            <Route
               key="/"
               exact path="/"
               element={<Home />}
             />
             {/* Main routes */}
-              <Route 
+              <Route
                 path=":book"
-                //onEnter={console.log("Terve")} 
+                //onEnter={console.log("Terve")}
                 element={
-                  <Page 
+                  <Page
                     handlePageChange={handlePage}
                     handleUpdate={handleUpdate}
                     handleSave={handleSave}
                     handleAddPage={handleAddPage}
+                    handleBookChange={handleBookChange}
+                    handleNameInput={handleNameInput}
+                    nameInput={nameInput}
                     currentPage={currentPage}
-                    currentBook={currentBook} 
-                    handleBookChange={handleBookChange} 
-                    books={books} 
+                    currentBook={currentBook}
+                    books={books}
                     handleAddBook={handleAddBook}
                     setCurrentBookByName={setCurrentBookByName}
                   />
                 }
               />
             {/* Sub routes  */}
-                <Route 
+                <Route
                   path=":book/:page"
                   element={
-                    <Page 
+                    <Page
                       handlePageChange={handlePage}
                       handleUpdate={handleUpdate}
                       handleSave={handleSave}
                       currentPage={currentPage}
                       handleAddPage={handleAddPage}
                     />
-                  } 
-                /> 
+                  }
+                />
               )
           </Routes>
       </BrowserRouter>
