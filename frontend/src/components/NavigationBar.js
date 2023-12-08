@@ -1,22 +1,25 @@
-import { Link } from "react-router-dom"
-const NavigationBar = ({handleBookChange, currentBook, books, handleAddBook}) => {
-  if(currentBook){
+import './navigationBar.css'
+import { Link } from 'react-router-dom'
+const NavigationBar = () => {
     return (
       <div className="topnav">
-        <Link className="pagelogo" to="" onClick={() => handleBookChange({name: "home", pages: []})}>MyPedia</Link>
+        <Link className="pagelogo" to="" >MyPedia</Link>
           <div className="topnavLinks">
-            {books.map(book => 
-              <Link to={book.name}
-                key={book.name}
-                className={book.name===currentBook.name?"active":"inactive"}
-                onClick={() => handleBookChange(book)} > 
-                {book.name}
+              <Link to="home"
+                key="home"
+                className="inactive"
+                  > 
+                Home
               </Link>
-            )}
+              <Link to="books"
+                key="books"
+                className="inactive"
+                  > 
+                Books
+              </Link>
           </div>
-        <button className="addBook" onClick={handleAddBook}>+</button>
       </div>
     )
-  }
 }
 export default NavigationBar
+

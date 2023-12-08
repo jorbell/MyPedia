@@ -4,8 +4,10 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 
+app.use(express.static('build'))
 app.use(cors())
 app.use(express.json())
+
 
 
 //Initialize connection
@@ -26,22 +28,20 @@ const Book  = sequelize.define('book', {
   displayname: {type: DataTypes.STRING }
 },{ sequelize, modelName: 'book' })
 
-const Page = sequelize.define('page', {
+const Chapter = sequelize.define('chapter', {
   name: {type: DataTypes.STRING },
   bookid: {type:DataTypes.INTEGER },
   displayname: {type: DataTypes.STRING },
   content: {type: DataTypes.STRING },
-  frontpage: {type: DataTypes.BOOLEAN }
-},{ sequelize, modelName: 'page' })
+},{ sequelize, modelName: 'Chapter' })
 
-Book.hasMany(Page)
-Page.belongsTo(Book)
-
+Book.hasMany(Chapter)
+Chapter.belongsTo(Book)
 
 
 //Get all books
 app.get('/api/books', async (req, res) => {
-  const books = await Book.findAll({include: Page})
+  const books = await Book.findAll({include: Chapter})
   res.json(books)
 })
 
@@ -49,43 +49,43 @@ app.get('/api/books', async (req, res) => {
 app.put('/api/books', async (req, res) => {
   let newBook = Book.build({"name": req.body.newContent, "displayname": req.body.newContent})
   await newBook.save();
-  const newPage = Page.build({
-    name: "frontpage",
+  const newChapter = Chapter.build({
+    name: "First chapter",
     bookid: newBook.id,
-    displayname: "Frontpage",
-    content: "Front page",
-    frontpage: 1 
+    displayname: "Generated chapter",
+    content: "Generated content",
   })
-  await newPage.save();
-  const books = await Book.findAll({include: Page})
+  await newChapter.save();
+  const books = await Book.findAll({include: Chapter})
   res.json(books)
 })
 
-//Create page
-app.put('/api/pages', async (req, res) => {
-  let newPage = Page.build({
+//Create chapter
+app.put('/api/chapters', async (req, res) => {
+  let newChapter = Chapter.build({
     name: req.body.name,
     bookid: req.body.bookid,
     displayname: req.body.name,
     content: "",
-    frontpage: 0 
   })
-  await newPage.save();
-  const books = await Book.findAll({include: Page})
+  await newChapter.save();
+  const books = await Book.findAll({include: Chapter})
   res.json(books)
 })
 
-//Update page
-app.put('/api/pages/:id', async (req,res) => {
+app.get('/:id', async (req,res) => {
+  res.redirect("http://localhost:3001");
+})
+//Update chapter
+app.put('/api/chapters/:id', async (req,res) => {
   let cid = req.params.id
   let newContent = req.body.newContent;
   let newName = req.body.name
-  console.log(newName)
-  await Page.update(
+  await Chapter.update(
     {content: newContent, name: newName, displayname: newName},
     {where: {id: cid}}
   )
-  const books = await Book.findAll({include: Page})
+  const books = await Book.findAll({include: Chapter})
   res.json(books)
 })
 app.listen(process.env.PORT, () => {

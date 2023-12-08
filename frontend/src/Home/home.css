@@ -1,0 +1,27 @@
+/*Background div of the home page.*/
+.home {
+  background-image:url("../../public/background2.jpg");
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--main-bg);
+  width: 100vw;
+  height: calc(100vh - var(--nav-height));
+  background-color: var(--main-bg);
+  color: #eeeeee;
+  overflow:auto;
+
+}
+/*Div that has content on home page. */
+.homeContent {
+  margin: auto;
+  border-radius: 0.5rem;
+  min-width: 500px;
+  max-width: 60vw;
+  min-height: 91vh;
+  padding: 10px;
+  background-color: #1f1f1ff3;
+  opacity:0.8;
+
+}
+

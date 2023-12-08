@@ -1,0 +1,46 @@
+/* Navigation bar styles */
+.topnav {
+  --nav-active: var(--main-bg);
+  --nav-hover: var(--main-bg);
+  --nav-bg: #eeeeee;
+  --nav-fg: var(--main-bg);
+
+  background-color: var(--nav-bg);
+  height: var(--nav-height);
+  overflow:scroll;
+  white-space:nowrap;
+ 
+}
+.topnav::-webkit-scrollbar {
+    display: none;
+}
+/* Style the links inside the navigation bar */
+.topnavLinks a {
+  float: left;
+  color: var(--nav-fg);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnavLinks a:hover {
+  background-color: #ddd;
+  color: var(--nav-hover);
+}
+
+/* Add a color to the active/current link */
+.topnavLinks a.active {
+  background-color: var(--nav-active);
+  color: white;
+}
+.pagelogo {
+  float: left;
+  color: white;
+  background-color: #3f3f3f;
+  text-align: left;
+  padding: 11px 16px;
+  width:280px;
+  font-size: 24px;
+}

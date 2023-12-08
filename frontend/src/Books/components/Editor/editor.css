@@ -1,0 +1,62 @@
+
+/* Tip top Configuration */
+/* Tip top ProseMirror div (Area with the text) */
+.editor-menu {
+  background-color:#2f2f2f60;
+  padding: 10px;
+
+}
+.editor-content{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height:calc(100% - 140px);
+}
+.ProseMirror {
+  padding: 10px;
+  text-align:justify;
+}
+.ProseMirror:focus {
+  outline:none;
+  padding: 10px;
+  text-align:justify;
+}
+pre {
+  color:white;
+  background-color:#3f3f3f;
+  padding:8px;
+  margin-left:5%;
+  border-radius: 8px;
+  width: 85%;
+}
+
+ul, ol {
+  padding: 0 1rem;
+}
+button {
+  height: 30px;
+  width: 50px;
+  padding: 0px;
+}
+button.is-active {
+  background-color:#9f9f9f;
+}
+
+/* Sub div centered on bookview */
+.editor-area {
+  width: var(--content-width);
+  min-width: 555px;
+  height: var(--content-height);
+  padding: var(--content-padding);
+  overflow:scroll;
+  margin: auto;
+
+  color: #000000;
+  background-color:var(--editor-bgcolor);
+  /* how many px to right */ /* How many px to down */ /* how wide shadow */
+  box-shadow: 0 var(--shadow-size) var(--shadow-size) var(--shadow-color);
+}
+/* Hide scroll bar on content div */
+.editor-area::-webkit-scrollbar {
+    display: none;
+}
+

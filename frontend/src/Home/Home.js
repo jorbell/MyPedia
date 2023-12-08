@@ -1,13 +1,12 @@
+import './home.css'
 const Home = () => {
   return (
-    <div className="homeDiv">
+    <div className="home">
       <div className="homeContent">
-        <div className="centered">
-          <h1> Welcome to MyPedia. </h1>
-          <p>
-            Choose a book from the top and start writing!
-          </p>
-        </div>
+        <h1> Welcome to MyPedia. </h1>
+        <p>
+          Choose a book from the top and start writing!
+        </p>
         <h2>
           Techniques used making this website:
         </h2>

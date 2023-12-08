@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = 'http://localhost:3001/api'
+const baseURL = '/api'
 
 const getAll = () => {
   const request = axios.get(`${baseURL}/books`)
@@ -7,7 +7,7 @@ const getAll = () => {
 }
 const update = (id, newContent, newName) => {
   const c = { newContent: newContent, name: newName}
-  const request = axios.put(`${baseURL}/pages/${id}`, c)
+  const request = axios.put(`${baseURL}/chapters/${id}`, c)
   return request.then(response => response.data)
 }
 const createBook = (newContent) => {
@@ -15,10 +15,10 @@ const createBook = (newContent) => {
   const request = axios.put(`${baseURL}/books`, c)
   return request.then(response => response.data)
 }
-const createPage = (id, name) => {
+const createChapter = (id, name) => {
   const c = {bookid: id, name: name, displayName: name}
   console.log(c)
-  const request = axios.put(`${baseURL}/pages`, c)
+  const request = axios.put(`${baseURL}/chapters`, c)
   return request.then(response => response.data)
 }
-export default {getAll, update, createBook, createPage}
+export default {getAll, update, createBook, createChapter}
