@@ -11,8 +11,8 @@
   --shadow-color: #000000;
 
   box-shadow: var(--shadow-size) calc(var(--shadow-size) / 3) var(--shadow-size) var(--shadow-color) inset;
-
   background-color:#8f8f8f;
+  height: var(--view-height);
 }
 .book-selector {
   background-color: #7090b0;

@@ -11,11 +11,11 @@ const NavigationBar = () => {
                   > 
                 Home
               </Link>
-              <Link to="books"
-                key="books"
+              <Link to="library"
+                key="library"
                 className="inactive"
                   > 
-                Books
+                Library
               </Link>
           </div>
       </div>

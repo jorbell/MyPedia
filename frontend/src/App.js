@@ -1,9 +1,9 @@
-import './index.css'
 import { HashRouter as Router,Routes,BrowserRouter,Route} from 'react-router-dom'
-import React, {} from 'react'
+import './index.css'
+import React from 'react'
 import NavigationBar from './components/NavigationBar'
-import BookView from './Books/BookView'
-import Home from './Home/Home'
+import Library from './library/Library'
+import Home from './home/Home'
 const App = () => {
   return (
     <div className="App">
@@ -22,12 +22,12 @@ const App = () => {
             />
             <Route
               key="/"
-              exact path="/books"
-              element={<BookView />}
+              exact path="/library"
+              element={<Library />}
             />
             <Route
-              exact path="books/:book"
-              element={<BookView />}
+              exact path="/library/:book"
+              element={<Library />}
             />
           </Routes>
       </BrowserRouter>

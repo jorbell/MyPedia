@@ -10,15 +10,10 @@ const update = (id, newContent, newName) => {
   const request = axios.put(`${baseURL}/chapters/${id}`, c)
   return request.then(response => response.data)
 }
-const createBook = (newContent) => {
-  const c = {newContent: newContent}
-  const request = axios.put(`${baseURL}/books`, c)
-  return request.then(response => response.data)
-}
-const createChapter = (id, name) => {
+const create = (id, name) => {
   const c = {bookid: id, name: name, displayName: name}
   console.log(c)
   const request = axios.put(`${baseURL}/chapters`, c)
   return request.then(response => response.data)
 }
-export default {getAll, update, createBook, createChapter}
+export default {getAll, update, create}

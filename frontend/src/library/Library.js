@@ -1,32 +1,12 @@
 import Book from './components/Book'
 import booksService from './services/books'
+import chapterService from './services/chapter'
+import BookSelector from './components/BookSelector'
 import { Link, useParams } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import './book.css'
 
-const BookSelector = ({books, handleBookChange,handleAddBook}) => {
-  const params = useParams()
-  if(books)
-  return (
-      <div className="book-selector">
-          <div className="book-selector-link">
-            {books.map(book => {
-              return (
-              <Link to={`../books/${book.name}`}
-                key={book.name}
-                className={book.name===params.book?"active":"inactive"}
-                onClick={() => handleBookChange(book)} > 
-                {book.name}
-              </Link>
-              )
-            }
-            )}
-            <button className="addBook" onClick={handleAddBook}>+</button>
-          </div>
-        </div>
-  )
-}
-const BookView = () => {
+const Library = () => {
   let initChapter = { "name": "", "content": "" }
   let initBook = { "name": "init", "chapters":[initChapter] }
 
@@ -64,21 +44,19 @@ const BookView = () => {
         setBooks(response)
         let newCurrentBook = response.find(book => book.id === currentBook.id)
         setCurrentBook(newCurrentBook)
-
         let newChapter = newCurrentBook.chapters.find(chapter => chapter.id === chap.id)
         setCurrentChapter(newChapter)
       })
   }
-
-
   const addChapter = () => {
     console.log("Chapter added")
     const name = prompt("Chapter name:", "...")
     if(name){
-      booksService
-        .createChapter(currentBook.id, name)
+      chapterService
+        .create(currentBook.id, name)
         .then((response) => {
           setBooks(response)
+          setCurrentBook(response.find(book => book.id === currentBook.id))
       })
     }
   }
@@ -86,30 +64,27 @@ const BookView = () => {
     const name = prompt("Bookname:", "...")
     if(name){
       booksService
-        .createBook(name)
+        .create(name)
         .then((response) => {
           setBooks(response)
         })
     }
   }
-
   return (
     <div>
         <BookSelector 
           books={books}
-          handleBookChange={handleBookChange} 
-          handleAddBook={addBook}
-          className="book-selector"
+          addBook={addBook}
         />
         <Book
           currentBook={currentBook}
           currentChapter={currentChapter}
+          addChapter={addChapter}
           setCurrentChapter={setCurrentChapter}
           handleSave={handleSave}
-          addChapter={addChapter}
         />
     </div>
   )
 
 }
-export default BookView
+export default Library
