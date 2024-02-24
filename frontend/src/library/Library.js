@@ -31,12 +31,6 @@ const Library = () => {
   }, [params])
 
   //Event handlers
-  const handleBookChange = (book) => {
-    setCurrentBook(book)
-    if (book.chapters.length > 0) {
-      setCurrentChapter(book.chapters[0])
-    }
-  }
   const handleSave = (chap) => {
     booksService
       .update(chap.id, chap.content , chap.name)

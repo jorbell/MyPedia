@@ -11,16 +11,31 @@ app.use(express.json())
 
 
 //Initialize connection
-const sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.DBUSER,
-  process.env.DBPASSWORD,
-  {
-    host: process.env.HOST,
-    dialect: process.env.DIALECT,
-    logging:false
-  }
-)
+let sequelize = null;
+if(process.env.NODE_ENV === "DEV"){
+  sequelize = new Sequelize(
+      process.env.DEV_DATABASE,
+      process.env.DEV_DBUSER,
+      process.env.DBPASSWORD,
+    {
+      host: process.env.HOST,
+      dialect: process.env.DIALECT,
+      logging:false
+    }
+  )
+}
+else {
+  sequelize = new Sequelize(
+      process.env.DATABASE,
+      process.env.DBUSER,
+      process.env.DBPASSWORD,
+    {
+      host: process.env.HOST,
+      dialect: process.env.DIALECT,
+      logging:false
+    }
+  )
+}
 
 //Create models
 const Book  = sequelize.define('book', {
