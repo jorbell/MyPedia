@@ -4,7 +4,7 @@ import chapterService from './services/chapter'
 import BookSelector from './components/BookSelector'
 import { Link, useParams } from 'react-router-dom'
 import {useState, useEffect} from 'react'
-import './book.css'
+import './Library.css'
 
 const Library = () => {
   let initChapter = { "name": "", "content": "" }
@@ -54,6 +54,17 @@ const Library = () => {
       })
     }
   }
+  const handleDeleteChapter = (id) => {
+    chapterService
+      .remove(id)
+      .then( response => {
+        setBooks(response)
+        let newCurrentBook = response.find(book => book.id === currentBook.id)
+        setCurrentBook(newCurrentBook)
+        let newChapter = newCurrentBook.chapters[0]
+        setCurrentChapter(newChapter)
+      })
+  }
   const addBook = () => {
     const name = prompt("Bookname:", "...")
     if(name){
@@ -65,7 +76,7 @@ const Library = () => {
     }
   }
   return (
-    <div>
+    <div className="LibraryApp">
         <BookSelector 
           books={books}
           addBook={addBook}
@@ -75,6 +86,7 @@ const Library = () => {
           currentChapter={currentChapter}
           addChapter={addChapter}
           setCurrentChapter={setCurrentChapter}
+          handleDeleteChapter={handleDeleteChapter}
           handleSave={handleSave}
         />
     </div>

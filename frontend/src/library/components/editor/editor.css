@@ -2,23 +2,32 @@
 /* Tip top Configuration */
 /* Tip top ProseMirror div (Area with the text) */
 .editor-menu {
-  background-color:#2f2f2f60;
+  background-color:#1f1f1f;
+  color: white;
   padding: 10px;
-  height: 200px;
+  //height: 200px;
+  //height: 100%;
 
+}
+.Editor {
+  background-color: gray;
+  //height: calc(var(--content-height) + var(--nav-height));
+  float: center;
 }
 .editor-content{
   overflow-x: hidden;
   overflow-y: scroll;
-  height: calc(var(--content-height) - 220px);
+  //height: calc(var(--content-height) - 220px);
+
 }
 .ProseMirror {
-  padding: 10px;
+  //padding: 10px;
   text-align:justify;
+  padding-bottom: 200px;
 }
 .ProseMirror:focus {
   outline:none;
-  padding: 10px;
+  //padding: 10px;
   text-align:justify;
 }
 pre {
@@ -45,7 +54,7 @@ button.is-active {
 /* Sub div centered on bookview */
 .editor-area {
   width: var(--content-width);
-  min-width: 555px;
+  min-width: 400px;
   height: var(--content-height);
   padding: var(--content-padding);
   overflow:scroll;
@@ -55,10 +64,11 @@ button.is-active {
   background-color:var(--editor-bgcolor);
   /* how many px to right */ /* How many px to down */ /* how wide shadow */
   box-shadow: 0 var(--shadow-size) var(--shadow-size) var(--shadow-color);
+  //height:100%;
 }
 /* Hide scroll bar on content div */
 .editor-area::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .tiptap {
@@ -82,11 +92,6 @@ button.is-active {
     line-height: 1.1;
   }
 
-  code {
-    background-color: rgba(#616161, 0.1);
-    color: #616161;
-  }
-
   pre {
     background: #0D0D0D;
     color: #FFF;
@@ -95,9 +100,11 @@ button.is-active {
     border-radius: 0.5rem;
 
     code {
-      color: inherit;
+      //color: inherit;
+      //background: none;
+      background-color: rgba(#616161, 0.1);
+      color: #white;
       padding: 0;
-      background: none;
       font-size: 0.8rem;
     }
   }
@@ -141,7 +148,8 @@ button.is-active {
     th {
       font-weight: bold;
       text-align: left;
-      background-color: #f1f3f5;
+      background-color: #202020;
+      color: white;
     }
 
     .selectedCell:after {
@@ -167,6 +175,10 @@ button.is-active {
 
 .tableWrapper {
   overflow-x: auto;
+}
+
+.hidden {
+  display: none;
 }
 
 .resize-cursor {

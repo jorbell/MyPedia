@@ -1,52 +1,5 @@
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
+import React, {useState} from 'react'
 
-const CustomTableCell = TableCell.extend({
-  addAttributes() {
-    return {
-      // extend the existing attributes …
-      ...this.parent?.(),
-
-      // and add a new one …
-      backgroundColor: {
-        default: null,
-        parseHTML: element => element.getAttribute('data-background-color'),
-        renderHTML: attributes => {
-          return {
-            'data-background-color': attributes.backgroundColor,
-            style: `background-color: ${attributes.backgroundColor}`,
-          }
-        },
-      },
-    }
-  },
-})
-export const tableHTML = `
-  <table style="width:100%">
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Age</th>
-    </tr>
-    <tr>
-      <td>Jill</td>
-      <td>Smith</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <td>Eve</td>
-      <td>Jackson</td>
-      <td>94</td>
-    </tr>
-    <tr>
-      <td>John</td>
-      <td>Doe</td>
-      <td>80</td>
-    </tr>
-  </table>
-`
 const MenuBar = ({ editor }) => {
   if (!editor) {
     return null
@@ -119,7 +72,7 @@ const MenuBar = ({ editor }) => {
 }
 
 
-const ButtonRow = ({editor}) => {
+const ButtonRow = ({editor, isHidden, setIsHidden}) => {
   return (
     <>
     Text:
@@ -192,10 +145,15 @@ const ButtonRow = ({editor}) => {
       >
         C/
       </button>
+    <button onClick={() => setIsHidden(!isHidden)}>
+      Hide
+    </button>
     <br />
-    Table:
-    <br />
-    <MenuBar editor={editor} />
+      <div className={isHidden ? "hidden" : ""}>
+        Table:
+        <br />
+        <MenuBar editor={editor} />
+      </div>
     </>
   )
 }

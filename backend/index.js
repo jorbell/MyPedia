@@ -16,7 +16,7 @@ if(process.env.NODE_ENV === "DEV"){
   sequelize = new Sequelize(
       process.env.DEV_DATABASE,
       process.env.DEV_DBUSER,
-      process.env.DBPASSWORD,
+      process.env.DEV_DBPASSWORD,
     {
       host: process.env.HOST,
       dialect: process.env.DIALECT,
@@ -90,6 +90,20 @@ app.put('/api/chapters', async (req, res) => {
 
 app.get('/:id', async (req,res) => {
   res.redirect("http://localhost:3001");
+})
+//Delete chapter
+app.put('/api/chapter/delete/:id', async (req, res) => {
+  console.log("moro")
+  console.log("moro")
+  console.log("moro")
+  console.log("moro")
+  await Chapter.destroy({
+    where: {
+      id: req.body.id
+    },
+  })
+  const books = await Book.findAll({include: Chapter})
+  res.json(books)
 })
 //Update chapter
 app.put('/api/chapters/:id', async (req,res) => {

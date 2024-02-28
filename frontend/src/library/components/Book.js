@@ -10,6 +10,7 @@ const Book = ({
   currentBook,
   currentChapter,
   setCurrentChapter,
+  handleDeleteChapter
 }) => {
   const handleEdit = (id, content) => {
     const newChapter = currentBook.chapters.find(chapter => chapter.id === id)
@@ -31,6 +32,7 @@ const Book = ({
           chapter={currentChapter} 
           handleEdit={handleEdit}
           handleSave={handleSave}
+          handleDeleteChapter={handleDeleteChapter}
         />
       </div>
     )

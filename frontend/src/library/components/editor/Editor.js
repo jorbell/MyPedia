@@ -8,7 +8,7 @@ import TextStyle from '@tiptap/extension-text-style'
 import {EditorContent, useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import React, {useState} from 'react'
-import EditorMenu from './Menu'
+import EditorMenu from './EditorMenu'
 import './editor.css'
 
 const CustomTableCell = TableCell.extend({
@@ -31,7 +31,7 @@ const CustomTableCell = TableCell.extend({
     }
   },
 })
-const TextEditor = ({chapter, handleSave}) => {
+const TextEditor = ({chapter, handleSave, handleDeleteChapter}) => {
   const extensions = [
     Color.configure(),
     TextStyle.configure(),
@@ -60,24 +60,27 @@ const TextEditor = ({chapter, handleSave}) => {
     editor.setEditable(!editable)
   }
   return (
-    <>
-      <div className="margin" />
-      <div className="editor-area">
-        <EditorMenu 
-          editor={editor} 
-          toggleEdit={toggleEdit} 
-          handleSave={handleSave} 
-          chapter={chapter}
-        />
+    <div className="Editor">
+    {/*<div className="margin" />*/}
+      <div>
+          <EditorMenu 
+            editor={editor} 
+            toggleEdit={toggleEdit} 
+            handleSave={handleSave} 
+            handleDeleteChapter={handleDeleteChapter}
+            chapter={chapter}
+          />
+      </div>
 
+      <div className="editor-area">
         <EditorContent 
           className="editor-content" 
           editor={editor} 
           spellCheck="false" 
         />
       </div>
-      <div className="margin" />
-    </>
+    {/*<div className="margin" />*/}
+    </div>
   )
 }
 export default TextEditor;
