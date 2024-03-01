@@ -62,23 +62,19 @@ const TextEditor = ({chapter, handleSave, handleDeleteChapter}) => {
   return (
     <div className="Editor">
     {/*<div className="margin" />*/}
-      <div>
-          <EditorMenu 
-            editor={editor} 
-            toggleEdit={toggleEdit} 
-            handleSave={handleSave} 
-            handleDeleteChapter={handleDeleteChapter}
-            chapter={chapter}
-          />
-      </div>
+      <EditorMenu 
+        editor={editor} 
+        toggleEdit={toggleEdit} 
+        handleSave={handleSave} 
+        handleDeleteChapter={handleDeleteChapter}
+        chapter={chapter}
+      />
 
-      <div className="editor-area">
         <EditorContent 
           className="editor-content" 
           editor={editor} 
           spellCheck="false" 
         />
-      </div>
     {/*<div className="margin" />*/}
     </div>
   )

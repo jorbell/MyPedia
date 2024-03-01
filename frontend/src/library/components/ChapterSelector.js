@@ -1,3 +1,4 @@
+import {useState} from 'react'
 const Chapter = ({isActive, name, onClick}) => {
   return(
     <button className={"chapter-menu-button " + 
@@ -14,8 +15,10 @@ const ChapterSelector = ({chapters, currentChapter, setCurrentChapter,addChapter
     else if (a.name > b.name)  return 1
     else return 0
   })
+  const [isHidden, setIsHidden] = useState(true)
   return (
-    <div className="chapter-menu">
+    <div className={isHidden ? "chapter-menu" : "chapter-menu-hidden"}>
+      <div>
       {chapters.map(chapter => 
         <Chapter
           key={chapter.name}
@@ -24,7 +27,17 @@ const ChapterSelector = ({chapters, currentChapter, setCurrentChapter,addChapter
           onClick={() => setCurrentChapter(chapter)}
         />
       )}
-      <button className="chapter-menu-button" onClick={addChapter}>Add chapter </button>
+    </div>
+      <div className="chapter-tools">
+      <p 
+        className="addChapter" 
+        onClick={addChapter}
+      > 
+        +
+      </p>
+    <br />
+        <p className="hideChapters" onClick={() => setIsHidden(!isHidden)}> = </p>
+      </div>
     </div>
   )
 }

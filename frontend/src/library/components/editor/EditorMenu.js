@@ -5,7 +5,7 @@ const EditorMenu = ({editor, toggleEdit, handleSave, chapter,
 handleDeleteChapter}) => {
   const [chapterNameInput, setChapterNameInput] = useState(chapter.name)
   const [bookNameInput, setBookNameInput] = useState()
-  const [menuIsHidden, setMenuIsHidden] = useState(true)
+  const [menuIsHidden, setMenuIsHidden] = useState(false)
   const handleChapterNameInput = (event) => {setChapterNameInput(event.target.value)}
   const handleBookNameInput = (event) => {setBookNameInput(event.target.value)}
 

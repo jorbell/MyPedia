@@ -1,35 +1,39 @@
 
 /* Tip top Configuration */
 /* Tip top ProseMirror div (Area with the text) */
-.editor-menu {
-  background-color:#1f1f1f;
-  color: white;
-  padding: 10px;
-  //height: 200px;
-  //height: 100%;
-
-}
+/* Container for menu and content*/
 .Editor {
   background-color: gray;
-  //height: calc(var(--content-height) + var(--nav-height));
+  width: 100%;
   float: center;
+  display: flex;
+  flex-direction: column;
 }
-.editor-content{
-  overflow-x: hidden;
-  overflow-y: scroll;
-  //height: calc(var(--content-height) - 220px);
+/* Menu bar with buttons, book name, chapter name etc */
+.editor-menu {
+  color: white;
+  background-color:black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
+  margin: 5px;
+  padding: 10px;
+}
 
+.editor-content{
+  padding: var(--content-padding);
+  overflow:auto;
+  background-color:var(--editor-bgcolor);
 }
-.ProseMirror {
-  //padding: 10px;
-  text-align:justify;
-  padding-bottom: 200px;
+/* Sub div centered on bookview */
+.editor-area {
+  //padding: var(--content-padding);
+  overflow:scroll;
+  margin: auto;
+  color: #000000;
+  background-color:var(--editor-bgcolor);
 }
-.ProseMirror:focus {
-  outline:none;
-  //padding: 10px;
-  text-align:justify;
-}
+
 pre {
   color:white;
   background-color:#3f3f3f;
@@ -51,26 +55,15 @@ button.is-active {
   background-color:#9f9f9f;
 }
 
-/* Sub div centered on bookview */
-.editor-area {
-  width: var(--content-width);
-  min-width: 400px;
-  height: var(--content-height);
-  padding: var(--content-padding);
-  overflow:scroll;
-  margin: auto;
-
-  color: #000000;
-  background-color:var(--editor-bgcolor);
-  /* how many px to right */ /* How many px to down */ /* how wide shadow */
-  box-shadow: 0 var(--shadow-size) var(--shadow-size) var(--shadow-color);
-  //height:100%;
+.ProseMirror {
+  //padding: 10px;
+  text-align:justify;
 }
-/* Hide scroll bar on content div */
-.editor-area::-webkit-scrollbar {
-  display: none;
+.ProseMirror:focus {
+  outline:none;
+  //padding: 10px;
+  text-align:justify;
 }
-
 .tiptap {
   margin: 1rem 0;
 

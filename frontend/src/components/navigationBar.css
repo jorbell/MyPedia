@@ -7,14 +7,22 @@
 
   background-color: var(--nav-bg);
   height: var(--nav-height);
-  overflow:scroll;
-  white-space:nowrap;
- 
+  //overflow:scroll;
+  display:flex;
+  flex-direction:row;
 }
 .topnav::-webkit-scrollbar {
     display: none;
 }
 /* Style the links inside the navigation bar */
+.topnavLinks {
+  display:flex;
+  width:100%;
+  flex-direction: row;
+  overflow-y:hidden;
+  overflow-x:auto;
+
+}
 .topnavLinks a {
   float: left;
   color: var(--nav-fg);
@@ -42,6 +50,6 @@
   background-color: #141414;
   text-align: left;
   padding: 11px 16px;
-  width:280px;
+  //width:200px;
   font-size: 24px;
 }

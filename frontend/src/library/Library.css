@@ -1,11 +1,101 @@
 .LibraryApp {
   height: calc(100vh - var(--nav-height));
-  overflow: hidden;
+}
+@keyframes testi {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+.library-home {
+  background-color: #141414;
+  color: white;
+  height: calc(100vh - calc(var(--nav-height) * 2));
+  display:flex;
+  flex-direction: column;
+  h1 {
+    opacity: 0;
+    font-size: 50px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+  h2 {
+    //margin-left: 20px;
+    margin-right: 20px;
+    font-size: 30px;
+    margin-top: 10px;
+    text-decoration: underline;
+  }
+  p {
+    opacity: 0;
+    font-size: 20px;
+    margin: 10px;
+  }
+  .ani-1 {
+    animation-name:testi;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+  }
+  .ani-2 {
+    animation-name:testi;
+    animation-duration: 5s;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+
+  }
+  .ani-3 {
+    animation-name:testi;
+    animation-duration: 5s;
+    animation-delay: 8s;
+    animation-fill-mode: forwards;
+  }
+  .ani-4 {
+    animation-name:testi;
+    animation-duration: 5s;
+    animation-delay: 12s;
+    animation-fill-mode: forwards;
+
+  }
+  .ani-5 {
+    animation-name:testi;
+    animation-duration: 5s;
+    animation-delay: 15s;
+    animation-fill-mode: forwards;
+
+  }
+  .top {
+    display: flex;
+  }
+  .arrow-up {
+    margin-top:5px;
+    margin-left:10px;
+    margin-right:10px;
+  }
+  .top-left {
+    opacity: 0;
+    width:50%;
+    display:flex;
+    padding:10px;
+    align-items:left;
+    justify-content:left;
+  }
+  .top-right {
+    opacity: 0;
+    width:50%;
+    padding:10px;
+    display:flex;
+    align-items:right;
+    justify-content:right;
+
+  }
+  .bottom {
+    text-align:center;
+  }
+
 }
 .book-view {
   /* local variables */
   --chapter-selector-width: 312px;
-  --view-height: calc(100vh - var(--nav-height)*2);
+  --view-height: calc(100vh - calc(var(--nav-height) * 2));
   --content-margin-height:0px;
   --content-padding:20px;
   --content-width: calc(100vw - var(--chapter-selector-width) - var(--content-padding) - 200px);
@@ -16,54 +106,103 @@
   box-shadow: var(--shadow-size) calc(var(--shadow-size) / 3) var(--shadow-size) var(--shadow-color) inset;
   background-color:#8f8f8f;
   height: var(--view-height);
+  display: flex;
 }
 
 .book-selector {
-  //background-color: #222222;
-  //background-color: #3f3f3f55;
   height: var(--nav-height);
   overflow:hidden;
   white-space:nowrap;
-  //box-shadow: inset 0 20px 10px -10px #333333;
-  background-color: #3f3f3f99;
   background-color: #343434;
+  display:flex;
+
+  a {
+    float: left;
+    color: var(--nav-bg);
+    color: #888888;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  a.active {
+    background-color: var(--nav-bg);
+    color: white;
+    background-color: #141414;
+    background-color: #555555;
+  }
+  a:hover {
+    background-color: #171717;
+    background-color: #343434;
+    background-color: #555555;
+  }
+  .books {
+    height: var(--nav-height);
+    display:flex;
+    width:calc(100vw - 100px);
+    display:flex;
+    //width:100%;
+    flex-direction: row;
+    overflow-y:hidden;
+
+  }
+  /* Button for adding book */
+  .addBook {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: white;
+    padding-left:6px;
+    margin:6px;
+    font-weight:bold;
+    border-style:solid;
+    border-width:2px;
+    border-color:gray;
+
+  }
 }
-.book-selector::-webkit-scrollbar { 
-  display: none;
-}
-.book-selector-link a {
-  float: left;
-  color: var(--nav-bg);
-  //color: white;
-  color: #888888;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-/* Add a color to the active/current link */
-.book-selector-link a.active {
-  background-color: var(--nav-bg);
-  color: white;
-  background-color: #141414;
-  background-color: #555555;
-}
-/* Change the color of links on hover */
-.book-selector-link a:hover {
-  //color: white;
-  background-color: #171717;
-  background-color: #343434;
-  background-color: #555555;
-}
+
 /* Chapter selection styles */
 .chapter-menu {
   width: var(--chapter-selector-width);
   height: var(--view-height);
-  background-color: #3f3f3fef;
+  background-color: #141414;
+  box-shadow: 0px var(--shadow-size) var(--shadow-size) var(--shadow-color);
+  float:left;
+  display:grid;
+  grid-template-rows: 1fr auto;
+}
+.chapter-menu-hidden {
+  display:grid;
+  grid-template-rows: 1fr auto;
+  width: 70px;
+  height: var(--view-height);
   background-color: #141414;
   box-shadow: 0px var(--shadow-size) var(--shadow-size) var(--shadow-color);
   float:left;
 }
+.chapter-tools {
+  text-align-last:left;
+}
+.chapter-tools p {
+  cursor:pointer;
+  border-style:solid;
+  border-width:1px;
+  border-color:white;
+  padding-left:23px;
+  margin:1px;
+  //width:100%;
+  font-weight:bold;
+  color:white;
+  font-size:40px;
+}
+.chapter-tools .addChapter {
+  //color:#0f3d12;
+}
+.chapter-tools .hideChapters {
+  //color: #1f193d;
+}
+
 @keyframes grow {
   from {
     width: 85%;
@@ -117,12 +256,6 @@
   font-size:24px;
 }
 
-/* Button for adding book */
-.addBook {
-  height: var(--nav-height);
-  width: var(--nav-height);
-  font-size: 38px;
-}
 
 /* The main area where majority of the site takes place */
 /* The container div */

@@ -17,6 +17,18 @@ const NavigationBar = () => {
                   > 
                 Library
               </Link>
+              <Link to="helmet"
+                key="helmet"
+                className="inactive"
+                  > 
+                Helmet
+              </Link>
+              <Link to="youtuber"
+                key="youtuber"
+                className="inactive"
+                  > 
+                YouTuber
+              </Link>
           </div>
       </div>
     )

@@ -1,3 +1,5 @@
+import {mdiPlus, mdiPlusBox} from '@mdi/js'
+import Icon from '@mdi/react'
 import { Link, useParams } from 'react-router-dom'
 
 const BookLink = ({ name, params }) => {
@@ -19,10 +21,15 @@ const BookSelector = ({books,addBook}) => {
   if(books)
   return (
     <div className="book-selector">
-      {books.map(book => 
-        <BookLink name={book.name} params={params}/>
-      )}
-      <button className="addBook" onClick={addBook}>+</button>
+      <div className="books">
+        {books.map(book => 
+          <BookLink key ={`${book.name}.${book.id}`} name={book.name} params={params}/>
+        )}
+      </div>
+      <div className="addBook" onClick={addBook}>
+        <p>Add a book</p>
+        <Icon path={mdiPlus} color="white" size={1} />
+      </div>
     </div>
   )
 } 

@@ -1,9 +1,11 @@
 import { HashRouter as Router,Routes,BrowserRouter,Route} from 'react-router-dom'
 import './index.css'
-import React from 'react'
+import React, {useEffect} from 'react'
 import NavigationBar from './components/NavigationBar'
 import Library from './library/Library'
+import Helmet from './helmet/helmet'
 import Home from './home/Home'
+import YouTuber from './youtuber/YouTuber'
 const App = () => {
   return (
     <div className="App">
@@ -28,6 +30,14 @@ const App = () => {
             <Route
               exact path="/library/:book"
               element={<Library />}
+            />
+            <Route
+              exact path="/helmet"
+              element={<Helmet />}
+            />
+            <Route
+              exact path="/youtuber"
+              element={<YouTuber />}
             />
           </Routes>
       </BrowserRouter>
