@@ -61,7 +61,6 @@ const TextEditor = ({chapter, handleSave, handleDeleteChapter}) => {
   }
   return (
     <div className="Editor">
-    {/*<div className="margin" />*/}
       <EditorMenu 
         editor={editor} 
         toggleEdit={toggleEdit} 
@@ -69,13 +68,11 @@ const TextEditor = ({chapter, handleSave, handleDeleteChapter}) => {
         handleDeleteChapter={handleDeleteChapter}
         chapter={chapter}
       />
-
         <EditorContent 
           className="editor-content" 
           editor={editor} 
           spellCheck="false" 
         />
-    {/*<div className="margin" />*/}
     </div>
   )
 }

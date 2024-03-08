@@ -1,5 +1,5 @@
-import TextEditor from './editor/Editor'
-import ChapterSelector from './ChapterSelector'
+import TextEditor from './editor/TextEditor'
+import ChapterMenu from './ChapterMenu'
 
 const NoBook = () => {
   return <h2>Select a book</h2>
@@ -21,7 +21,7 @@ const Book = ({
   if(currentBook !== undefined){
     return (
       <div className="book-view">
-        <ChapterSelector 
+        <ChapterMenu 
           chapters={currentBook.chapters}
           currentChapter={currentChapter}
           setCurrentChapter={setCurrentChapter}

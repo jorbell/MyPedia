@@ -24,10 +24,16 @@
   padding: var(--content-padding);
   overflow:auto;
   background-color:var(--editor-bgcolor);
+  margin: auto;
+  min-width: 700px;
+  max-width:700px;
+  padding: 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
 }
 /* Sub div centered on bookview */
 .editor-area {
-  //padding: var(--content-padding);
   overflow:scroll;
   margin: auto;
   color: #000000;

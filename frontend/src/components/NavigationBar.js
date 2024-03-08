@@ -5,11 +5,11 @@ const NavigationBar = () => {
       <div className="topnav">
         <Link className="pagelogo" to="" >MyPedia</Link>
           <div className="topnavLinks">
-              <Link to="home"
-                key="home"
+              <Link to="helmet"
+                key="helmet"
                 className="inactive"
                   > 
-                Home
+                Helmet
               </Link>
               <Link to="library"
                 key="library"
@@ -17,11 +17,11 @@ const NavigationBar = () => {
                   > 
                 Library
               </Link>
-              <Link to="helmet"
-                key="helmet"
+              <Link to="tasker"
+                key="tasker"
                 className="inactive"
                   > 
-                Helmet
+                Tasker
               </Link>
               <Link to="youtuber"
                 key="youtuber"

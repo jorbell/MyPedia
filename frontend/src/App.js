@@ -6,6 +6,7 @@ import Library from './library/Library'
 import Helmet from './helmet/helmet'
 import Home from './home/Home'
 import YouTuber from './youtuber/YouTuber'
+import Tasker from './tasker/Tasker'
 const App = () => {
   return (
     <div className="App">
@@ -38,6 +39,10 @@ const App = () => {
             <Route
               exact path="/youtuber"
               element={<YouTuber />}
+            />
+            <Route
+              exact path="/tasker"
+              element={<Tasker />}
             />
           </Routes>
       </BrowserRouter>

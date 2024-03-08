@@ -17,16 +17,16 @@ const ChapterMenu = ({chapters, currentChapter, setCurrentChapter,addChapter}) =
   const [isHidden, setIsHidden] = useState(true)
   return (
     <div className={isHidden ? "chapter-menu" : "chapter-menu minimized"}>
-      <div className="chapters">
-        {chapters.map(chapter => 
-          <Chapter
-            key={chapter.name}
-            name={chapter.name}
-            isActive={currentChapter.id === chapter.id} 
-            onClick={() => setCurrentChapter(chapter)}
-          />
-        )}
-      </div>
+      <div>
+      {chapters.map(chapter => 
+        <Chapter
+          key={chapter.name}
+          name={chapter.name}
+          isActive={currentChapter.id === chapter.id} 
+          onClick={() => setCurrentChapter(chapter)}
+        />
+      )}
+    </div>
       <div className="chapter-tools">
       <p 
         className="addChapter" 

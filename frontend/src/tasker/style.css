@@ -1,0 +1,72 @@
+:root {
+  --padding: 50px;
+}
+.tasker {
+  background-color:#111;
+  height: 100%;
+  height:calc(100vh - var(--nav-height) - var(--padding));
+  color: white;
+  padding-top: 50px;
+  display: flex;
+  align-items:center;
+  flex-direction:column;
+
+  .settings {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    background-color:#123;
+    padding:20px;
+    .buttons{
+      display: flex;
+      align-items:center;
+      justify-content:center;
+    }
+    button {
+      padding:2px;
+      height: 50px;
+      width: 70px;
+      margin-left: 20px;
+      margin-right: 20px;
+      background-color:#7c9;
+    }
+  }
+  .projectlist {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:50%;
+    background-color:#124;
+    h1 {
+      margin-left: 5px;
+    }
+  }
+  .tasklist {
+    display:flex;
+    flex-direction:column;
+    background-color:#224;
+    color: white;
+    padding:10px;
+
+    .task {
+      background-color:#333;
+      margin-bottom: 10px;
+      padding: 20px;
+      border-style:solid;
+    }
+  } 
+  .projectform {
+  }
+}
+.titlediv {
+  border-style:solid;
+}
+
+h1 {
+  margin:0px;
+}
+h3 {
+  margin:0px;
+}
+
