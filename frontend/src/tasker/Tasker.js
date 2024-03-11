@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import projectService from './services/project'
 import taskService from './services/task'
 import './style.css'
-const Task = ({task}) => {
+const Task = ({task, setProjects}) => {
   const updateState = (event) => {
     let newTask = {
       ...task,
@@ -10,6 +10,10 @@ const Task = ({task}) => {
     }
     taskService
       .update(newTask)
+      .then(result => {
+        setProjects(result)
+      })
+
   }
   let states = [
     {
@@ -25,7 +29,6 @@ const Task = ({task}) => {
       name: "Completed"
     },
   ]
-  
   return (
     <div className="task">
         <h3> {task.title} </h3>
@@ -39,17 +42,17 @@ const Task = ({task}) => {
     </div>
   )
 }
-const Project = ({project, filter}) => {
+const Project = ({project, filter, setProjects}) => {
   const [isHidden, setIsHidden] = useState(true)
   let shownTasks = project.tasks;
   if(filter === "notstarted") {
     shownTasks = project.tasks.filter(task => task.state === "0")
   }
-  else if(filter === "onlystarted") {
+  else if(filter === "started") {
     shownTasks = project.tasks.filter(task => task.state === "1")
   }
-  else if(filter === "hidecompleted") {
-    shownTasks = project.tasks.filter(task => task.state !== "2")
+  else if(filter === "completed") {
+    shownTasks = project.tasks.filter(task => task.state === "2")
   }
   //console.log(isHidden);
   return(
@@ -58,14 +61,16 @@ const Project = ({project, filter}) => {
         <h1>{project.title}</h1>
       </div>
       {isHidden ?
-        <TaskList tasks={shownTasks} />
+        <TaskList 
+          tasks={shownTasks} 
+          setProjects={setProjects}
+        />
       : null}
-
     </div>
   )
 
 }
-const ProjectList = ({projects, filter}) => {
+const ProjectList = ({projects, filter, setProjects}) => {
   if (projects === undefined) return null;
   return (
     <>
@@ -75,6 +80,7 @@ const ProjectList = ({projects, filter}) => {
             <Project 
               project={project} 
               filter={filter}
+              setProjects={setProjects}
             />
           </div>
         )
@@ -82,13 +88,17 @@ const ProjectList = ({projects, filter}) => {
     </>
   )
 }
-const TaskList = ({tasks}) => {
+const TaskList = ({tasks,setProjects}) => {
   if (tasks === undefined) return null;
   return (
     <div className="tasklist">
       {tasks.map(task => {
         return (
-          <Task key={`task${task.id}`} task={task} />
+          <Task 
+            key={`task${task.id}`} 
+            task={task} 
+            setProjects={setProjects}
+          />
         )
       })}
     </div>
@@ -176,13 +186,16 @@ const Settings = ({createProject, createTask, projects, setFilter}) => {
           New Project
         </button>
         <button onClick={() => setFilter("notstarted")}>
-          Show only not started
+          Not started
         </button>
-        <button onClick={() => setFilter("onlystarted")}>
-          Show only started
+        <button onClick={() => setFilter("started")}>
+          Started
         </button>
-        <button onClick={() => setFilter("hidecompleted")}>
-          Hide completed
+        <button onClick={() => setFilter("completed")}>
+          Complete
+        </button>
+        <button onClick={() => setFilter("")}>
+          All
         </button>
       </div>
       <div> 
@@ -249,6 +262,7 @@ const Tasker = () => {
         <ProjectList 
           projects={projects} 
           filter={filter}
+          setProjects={setProjects}
         />
     </div>
   )
