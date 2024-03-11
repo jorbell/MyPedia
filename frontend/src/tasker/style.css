@@ -10,6 +10,8 @@
   display: flex;
   align-items:center;
   flex-direction:column;
+  overflow-y:auto;
+  overflow-x:hidden;
 
   .settings {
     display: flex;
@@ -50,10 +52,24 @@
     padding:10px;
 
     .task {
+      display:flex;
+      flex-direction:row;
       background-color:#333;
       margin-bottom: 10px;
-      padding: 20px;
+      padding: 2px;
       border-style:solid;
+      h3 {
+        text-decoration:underline;
+      }
+      p {
+        margin: 5px;
+      }
+      .info {
+        width:90%;
+      }
+      .buttons {
+        width:10%;
+      }
     }
   } 
   .projectform {

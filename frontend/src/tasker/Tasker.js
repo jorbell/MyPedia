@@ -31,14 +31,19 @@ const Task = ({task, setProjects}) => {
   ]
   return (
     <div className="task">
+      <div className="info"> 
         <h3> {task.title} </h3>
-        <p> {task.description } </p>
+        <p>Description:  {task.description } </p>
+      </div>
+      <div className="buttons"> 
+        State:
         <select onChange={updateState}>
           <option defaultValue={task.state}> {states[task.state].name} </option>
           <option value={0}>{"Not started"} </option>
           <option value={1}>{"Started"} </option>
           <option value={2}>{"Completed"} </option>
         </select>
+      </div>
     </div>
   )
 }
@@ -214,7 +219,7 @@ const Settings = ({createProject, createTask, projects, setFilter}) => {
 const Header = () => <h1> Tasker </h1>
 const Tasker = () => {
   const [projects, setProjects] = useState([])
-  const [filter, setFilter] = useState("showall")
+  const [filter, setFilter] = useState("notstarted")
 
   //Get a list of projects
   useEffect(() => {
