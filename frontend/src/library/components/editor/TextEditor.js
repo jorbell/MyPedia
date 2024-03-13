@@ -16,7 +16,6 @@ const CustomTableCell = TableCell.extend({
     return {
       // extend the existing attributes …
       ...this.parent?.(),
-
       // and add a new one …
       backgroundColor: {
         default: null,
@@ -31,7 +30,7 @@ const CustomTableCell = TableCell.extend({
     }
   },
 })
-const TextEditor = ({chapter, handleSave, handleDeleteChapter}) => {
+const TextEditor = ({chapter}) => {
   const extensions = [
     Color.configure(),
     TextStyle.configure(),
@@ -54,7 +53,6 @@ const TextEditor = ({chapter, handleSave, handleDeleteChapter}) => {
       setContent(editor.getHTML())
     },
   })
-  //editor.commands.updateAttributes('codeblock', {class:'esko'})
   const toggleEdit = () => { 
     setEditable(!editable) 
     editor.setEditable(!editable)
@@ -64,8 +62,6 @@ const TextEditor = ({chapter, handleSave, handleDeleteChapter}) => {
       <EditorMenu 
         editor={editor} 
         toggleEdit={toggleEdit} 
-        handleSave={handleSave} 
-        handleDeleteChapter={handleDeleteChapter}
         chapter={chapter}
       />
         <EditorContent 

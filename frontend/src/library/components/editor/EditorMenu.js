@@ -1,13 +1,15 @@
 import ButtonRow from "./ButtonRow"
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+import { bookContext } from '../../Context'
 
-const EditorMenu = ({editor, toggleEdit, handleSave, chapter,
-handleDeleteChapter}) => {
+const EditorMenu = ({editor, toggleEdit, chapter }) => {
   const [chapterNameInput, setChapterNameInput] = useState(chapter.name)
   const [bookNameInput, setBookNameInput] = useState()
   const [menuIsHidden, setMenuIsHidden] = useState(false)
   const handleChapterNameInput = (event) => {setChapterNameInput(event.target.value)}
   const handleBookNameInput = (event) => {setBookNameInput(event.target.value)}
+
+  const {handleSave, handleDeleteChapter} = useContext(bookContext);
 
   if(!editor) { return null }
 
@@ -18,12 +20,11 @@ handleDeleteChapter}) => {
         <br /> 
       Chapter: <input id="chapterNameInput" onChange={handleChapterNameInput} value={chapterNameInput}/> 
         <br /> 
-      <button onClick={ ()=>handleSave(
-        {...chapter, 
+      <button onClick={()=>handleSave({
+          ...chapter, 
           name:chapterNameInput,
           content:editor.getHTML()
-        }
-      )}> 
+        })}> 
         Save
       </button>
       <button onClick={()=>toggleEdit()}>

@@ -7,6 +7,16 @@ const Chapter = ({isActive, name, onClick}) => {
     </button>
   )
 }
+const ChapterTools = ({addChapter, isHidden, setIsHidden}) => {
+  return (
+    <div className="chapter-tools">
+      <p className="addChapter" onClick={addChapter}> + </p>
+      <br />
+      <p className="hideChapters" onClick={() => setIsHidden(!isHidden)}> = </p>
+    </div>
+  )
+
+}
 const ChapterMenu = ({chapters, currentChapter, setCurrentChapter,addChapter}) => {
   /* Sort chapters alpabetically */
   chapters.sort((a,b) => {
@@ -18,25 +28,20 @@ const ChapterMenu = ({chapters, currentChapter, setCurrentChapter,addChapter}) =
   return (
     <div className={isHidden ? "chapter-menu" : "chapter-menu minimized"}>
       <div>
-      {chapters.map(chapter => 
-        <Chapter
-          key={chapter.name}
-          name={chapter.name}
-          isActive={currentChapter.id === chapter.id} 
-          onClick={() => setCurrentChapter(chapter)}
-        />
-      )}
-    </div>
-      <div className="chapter-tools">
-      <p 
-        className="addChapter" 
-        onClick={addChapter}
-      > 
-        +
-      </p>
-    <br />
-        <p className="hideChapters" onClick={() => setIsHidden(!isHidden)}> = </p>
+        {chapters.map(chapter => 
+          <Chapter
+            key={chapter.name}
+            name={chapter.name}
+            isActive={currentChapter.id === chapter.id} 
+            onClick={() => setCurrentChapter(chapter)}
+          />
+        )}
       </div>
+      <ChapterTools 
+        addChapter={addChapter}
+        isHidden={isHidden}
+        setIsHidden={setIsHidden}
+      />
     </div>
   )
 }

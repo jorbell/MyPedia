@@ -91,6 +91,13 @@ button.is-active {
     line-height: 1.1;
   }
 
+
+  li {
+    line-height:0.5;
+  }
+  ul, ol {
+    margin-bottom: 40px;
+  }
   pre {
     background: #0D0D0D;
     color: #FFF;

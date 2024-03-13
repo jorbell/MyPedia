@@ -5,12 +5,10 @@ const NoBook = () => {
   return <h2>Select a book</h2>
 }
 const Book = ({
-  handleSave, 
   addChapter,
   currentBook,
   currentChapter,
   setCurrentChapter,
-  handleDeleteChapter
 }) => {
   const handleEdit = (id, content) => {
     const newChapter = currentBook.chapters.find(chapter => chapter.id === id)
@@ -31,8 +29,6 @@ const Book = ({
           key={currentChapter.name}
           chapter={currentChapter} 
           handleEdit={handleEdit}
-          handleSave={handleSave}
-          handleDeleteChapter={handleDeleteChapter}
         />
       </div>
     )

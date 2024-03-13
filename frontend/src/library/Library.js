@@ -5,6 +5,7 @@ import Book from './components/Book'
 import BookSelector from './components/BookSelector'
 import booksService from './services/books'
 import chapterService from './services/chapter'
+import { bookContext } from './Context'
 
 import {mdiArrowUpThin} from '@mdi/js'
 import Icon from '@mdi/react'
@@ -160,14 +161,20 @@ const Library = () => {
         />
         {params.book === undefined ?
         <Home /> :
-        <Book
-          currentBook={currentBook}
-          currentChapter={currentChapter}
-          addChapter={addChapter}
-          setCurrentChapter={setCurrentChapter}
-          handleDeleteChapter={handleDeleteChapter}
-          handleSave={handleSave}
-        /> 
+        <bookContext.Provider 
+          value={{
+            handleSave, 
+            handleDeleteChapter
+          }}>
+          <Book
+            currentBook={currentBook}
+            currentChapter={currentChapter}
+            addChapter={addChapter}
+            setCurrentChapter={setCurrentChapter}
+            handleDeleteChapter={handleDeleteChapter}
+            handleSave={handleSave}
+          /> 
+        </bookContext.Provider >
       }
     </div>
   )
