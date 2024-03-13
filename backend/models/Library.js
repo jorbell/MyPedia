@@ -1,27 +1,27 @@
 const { Sequelize, DataTypes} = require('sequelize')
-
+const config = require('../utils/config')
 
 let library = null;
-if(process.env.NODE_ENV === "DEV"){
+if(config.NODE_ENV === "DEV"){
   library = new Sequelize(
-      process.env.DEV_DATABASE,
-      process.env.DEV_DBUSER,
-      process.env.DEV_DBPASSWORD,
+      config.DEV_DATABASE,
+      config.DEV_DBUSER,
+      config.DEV_DBPASSWORD,
     {
-      host: process.env.HOST,
-      dialect: process.env.DIALECT,
+      host: config.HOST,
+      dialect: config.DIALECT,
       logging:true
     }
   )
 }
 else {
   library = new Sequelize(
-      process.env.LIBRARY,
-      process.env.DBUSER,
-      process.env.DBPASSWORD,
+      config.LIBRARY,
+      config.DBUSER,
+      config.DBPASSWORD,
     {
-      host: process.env.HOST,
-      dialect: process.env.DIALECT,
+      host: config.HOST,
+      dialect: config.DIALECT,
       logging:false
     }
   )

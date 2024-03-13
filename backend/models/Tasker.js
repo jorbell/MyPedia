@@ -1,13 +1,15 @@
 const { Sequelize, DataTypes} = require('sequelize')
 
+const config = require('../utils/config')
+
 const tasker = new Sequelize(
       //process.env.DEV_DATABASE,
-      "tasker",
-      process.env.DEV_DBUSER,
-      process.env.DEV_DBPASSWORD,
+      config.TASKER,
+      config.DEV_DBUSER,
+      config.DEV_DBPASSWORD,
     {
-      host: process.env.HOST,
-      dialect: process.env.DIALECT,
+      host: config.HOST,
+      dialect: config.DIALECT,
       logging:true
     }
   )

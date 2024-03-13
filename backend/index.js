@@ -88,9 +88,11 @@ app.put('/api/chapters', async (req, res) => {
   res.json(books)
 })
 
+/*
 app.get('/:id', async (req,res) => {
   res.redirect("http://localhost:3001");
 })
+*/
 //Delete chapter
 app.put('/api/chapter/delete/:id', async (req, res) => {
   await Chapter.destroy({
@@ -114,5 +116,5 @@ app.put('/api/chapters/:id', async (req,res) => {
   res.json(books)
 })
 app.listen(config.PORT, () => {
-  console.log(`server running on port ${process.env.PORT}`)
+  console.log(`server running on port ${config.PORT}`)
 })
