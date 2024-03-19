@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = '/api'
+const baseURL = '/api/tasker'
 
 const create = (newTask) => {
   const request = axios.put(`${baseURL}/tasks`, newTask)

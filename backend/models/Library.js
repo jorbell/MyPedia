@@ -1,31 +1,30 @@
 const { Sequelize, DataTypes} = require('sequelize')
 const config = require('../utils/config')
+const logger = require('../utils/logger')
 
-let library = null;
-if(config.NODE_ENV === "DEV"){
-  library = new Sequelize(
-      config.DEV_DATABASE,
-      config.DEV_DBUSER,
-      config.DEV_DBPASSWORD,
-    {
-      host: config.HOST,
-      dialect: config.DIALECT,
-      logging:true
+if(config.NODE_ENV === "DEV")
+  db = require('../utils/config').libraryDev
+else if (config.NODE_ENV === "TEST")
+  db = require('../utils/config').libraryTest
+else
+  db = require('../utils/config').library
+  
+
+let library = new Sequelize(
+    db.database,
+    db.user,
+    db.pwd,
+  {
+    host: db.host,
+    dialect: db.dialect,
+    logging: (...msg) => logger.sequelizeLogger(msg),
+    pool: {
+      max: 10,
+      min: 0,
+      idle: parseInt(db.idle)
     }
-  )
-}
-else {
-  library = new Sequelize(
-      config.LIBRARY,
-      config.DBUSER,
-      config.DBPASSWORD,
-    {
-      host: config.HOST,
-      dialect: config.DIALECT,
-      logging:false
-    }
-  )
-}
+  }
+)
 
 //Create models for library
 const Book  = library.define('book', {
@@ -42,6 +41,7 @@ const Chapter = library.define('chapter', {
 
 Book.hasMany(Chapter)
 Chapter.belongsTo(Book)
+
 
 module.exports = {
   Book, Chapter

@@ -1,4 +1,4 @@
-import { HashRouter as Router,Routes,BrowserRouter,Route} from 'react-router-dom'
+import { HashRouter as Router,Routes,HashRouter,Route} from 'react-router-dom'
 import './index.css'
 import React, {useEffect} from 'react'
 import NavigationBar from './components/NavigationBar'
@@ -10,7 +10,7 @@ import Tasker from './tasker/Tasker'
 const App = () => {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter>
         <NavigationBar />
           <Routes>
             <Route
@@ -45,7 +45,7 @@ const App = () => {
               element={<Tasker />}
             />
           </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

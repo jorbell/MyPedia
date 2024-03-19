@@ -21,18 +21,19 @@ const ProjectForm = ({setForm}) => {
     </div>
   )
 }
-const TaskForm = ({projects, setForm}) => {
-  const {createTask} = useContext(projectContext);
+const TaskForm = ({setForm}) => {
+  const {createTask, currentProject} = useContext(projectContext);
+  const defaultsprint = currentProject.sprints.find(s => s.title === "Default")
   const submit = (event) => {
     event.preventDefault()
     setForm("")
     let title = event.target.title.value
     let description = event.target.description.value
-    let projectid = event.target.project.value
     let task = {
-      projectid: projectid,
       title: title,
-      description: description
+      description: description,
+      sprintid: defaultsprint.id,
+      projectid: currentProject.id
     }
     createTask(task)
   }
@@ -43,13 +44,6 @@ const TaskForm = ({projects, setForm}) => {
       <form onSubmit={submit}>
       Title: <input id="title" type="text" />
       Description: <input id="description" type="text"/>
-      Project: 
-      <select name="project" id="projects">
-        {projects.map(project => 
-            <option key={project.id} value={project.id}>{project.title}</option>
-          )
-        }
-        </select>
         <input type="submit" />
       </form>
     </div>
@@ -68,8 +62,9 @@ const Form = ({form, projects, setForm}) => {
   }
   else return null;
 }
-const Settings = ({projects, setFilter}) => {
+const Settings = ({projects}) => {
   const [form, setForm] = useState("")
+  const {setCurrentProject} = useContext(projectContext);
   const handleFormChange = (set) => {
     if (form === set) setForm("");
     else setForm(set);
@@ -77,23 +72,14 @@ const Settings = ({projects, setFilter}) => {
   return (
     <div className="settings">
       <div className="buttons">
+        <button onClick={() => setCurrentProject(undefined)}>
+          Back to ProjectsFeed
+        </button>
         <button onClick={() => handleFormChange("task")}>
           New task
         </button>
         <button onClick={() => handleFormChange("project")}>
           New Project
-        </button>
-        <button onClick={() => setFilter("notstarted")}>
-          Not started
-        </button>
-        <button onClick={() => setFilter("started")}>
-          Started
-        </button>
-        <button onClick={() => setFilter("completed")}>
-          Complete
-        </button>
-        <button onClick={() => setFilter("")}>
-          All
         </button>
       </div>
       <div> 

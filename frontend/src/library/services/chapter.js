@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = '/api'
+const baseURL = '/api/library'
 
 const update = (id, newContent, newName) => {
   const c = { newContent: newContent, name: newName}

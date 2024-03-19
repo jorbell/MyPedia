@@ -13,70 +13,96 @@
   overflow-y:auto;
   overflow-x:hidden;
 
-  .settings {
+  .projectfeed {
     display: flex;
-    flex-direction: column;
-    align-items:center;
     justify-content:center;
-    background-color:#123;
-    padding:20px;
-    .buttons{
-      display: flex;
-      align-items:center;
-      justify-content:center;
-    }
-    button {
-      padding:2px;
-      height: 50px;
-      width: 90px;
-      margin-left: 20px;
-      margin-right: 20px;
-      background-color:#7c9;
+    flex-wrap:wrap;
+    width:80%;
+    padding: 20px;
+
+    .projectcard {
+      width: 400px;
+      height: 200px;
+      background-color: #234;
+      padding: 10px;
+      margin: 20px;
     }
   }
-  .projectlist {
+
+  .taskfeed {
     display:flex;
     flex-direction:column;
     justify-content:center;
-    width:50%;
+    width:66%;
     background-color:#124;
     h1 {
       margin-left: 5px;
     }
   }
-  .tasklist {
+  .sprint {
     display:flex;
     flex-direction:column;
     background-color:#224;
     color: white;
-    padding:10px;
+    border-style:solid;
+    border-color:#242;
+    
+    .sprintheader{
+      display:flex;
+      background-color:#111;
+    }
+
+
+    h3 {
+      text-decoration:underline;
+    }
+    p {
+      margin: 5px;
+    }
 
     .task {
       display:flex;
       flex-direction:row;
       background-color:#333;
       margin-bottom: 10px;
+      margin-left: 30px;
       padding: 2px;
       border-style:solid;
-      h3 {
-        text-decoration:underline;
-      }
-      p {
-        margin: 5px;
-      }
       .info {
-        width:90%;
+        width:85%;
       }
       .buttons {
-        width:10%;
+        width:15%;
+        select {
+          margin:4px;
+        }
       }
     }
   } 
-  .projectform {
-  }
 }
 .titlediv {
   border-style:solid;
+}
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  background-color:#123;
+  padding:20px;
+  .buttons{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+  }
+  button {
+    padding:2px;
+    height: 50px;
+    width: 90px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color:#7c9;
+  }
 }
 
 h1 {

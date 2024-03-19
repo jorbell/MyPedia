@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react'
+import ProjectFeed from './components/ProjectFeed'
+import Project from './components/Project'
 import projectService from './services/project'
 import taskService from './services/task'
 import './style.css'
-import ProjectList from './components/ProjectList'
-import Settings from './components/Settings'
 
-import { projectContext } from './Context'
+import {projectContext} from './Context'
 
 const Header = () => <h1> Tasker </h1>
 const Tasker = () => {
   const [projects, setProjects] = useState([])
-  const [filter, setFilter] = useState("notstarted")
+  const [currentProject, setCurrentProject] = useState(undefined)
 
   //Get a list of projects
   useEffect(() => {
@@ -18,7 +18,6 @@ const Tasker = () => {
     projectService
       .getAll()
       .then(result => {
-        //console.log(result)
         setProjects(result);
       })
   }, [])
@@ -33,30 +32,36 @@ const Tasker = () => {
       })
   }
   const createTask = (task) => {
-    console.log(task)
     task = {
       ...task,
-      state: 0
+      state: 0,
     }
     taskService
       .create(task)
       .then(result => {
         setProjects(result)
+        setCurrentProject(result.find(project => project.id === parseInt(task.projectid)))
       })
   }
   return (
     <div className="tasker">
-      <Header />
-      <projectContext.Provider value={{createTask, createProject}}>
-        <Settings 
-          projects={projects}
-          setFilter={setFilter}
-        />
-        <ProjectList 
-          projects={projects} 
-          filter={filter}
-          setProjects={setProjects}
-        />
+      <projectContext.Provider value={{createTask, createProject, currentProject, setCurrentProject, setProjects}}>
+        {currentProject === undefined ? 
+          <>
+            <Header />
+            <ProjectFeed 
+              projects={projects}
+            />
+          </>
+          :
+          <>
+            <Project 
+              project ={currentProject}
+              projects={projects}
+              setProjects={setProjects}
+            />
+          </>
+        }
       </projectContext.Provider>
 
     </div>

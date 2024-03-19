@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL = '/api'
+const baseURL = '/api/library'
 
 const getAll = () => {
   const request = axios.get(`${baseURL}/books`)
