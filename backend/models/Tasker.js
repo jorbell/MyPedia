@@ -19,9 +19,11 @@ const tasker = new Sequelize(
       dialect: db.dialect,
       logging: (...msg) => logger.sequelizeLogger(msg),
       pool: {
-        max: 10,
+        max: 1,
         min: 0,
-        idle: parseInt(db.idle)
+        idle: parseInt(db.idle),
+        acquire:parseInt(db.idle)
+
       }
     },
   )

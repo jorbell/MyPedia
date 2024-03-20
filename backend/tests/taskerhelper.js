@@ -6,11 +6,23 @@ const projectsInDb = async () => {
 }
 const sprintsInDb = async () => {
   const sprints = await Sprint.findAll()
-  return sprints
+  return sprints.map(s => s.dataValues)
 }
 const tasksInDb = async () => {
   const tasks = await Task.findAll()
-  return tasks
+  return tasks.map(t => t.dataValues)
+}
+const testProject = async () => {
+  const project = await Project.findOne()
+  return project.dataValues
+}
+const testSprint = async () => {
+  const sprint = await Sprint.findOne()
+  return sprint.dataValues
+}
+const testTask = async () => {
+  const task = await Task.findOne()
+  return task.dataValues
 }
 
 //Destroys all projects, sprints and tasks from database
@@ -32,10 +44,14 @@ const destroyDb = async () => {
 const populateDb = async () => {
   //Create test project
   const testProject = {
-    title: "Moro",
-    description: "Tere",
+    title: "Initial test project",
+    description: "Initial test project description",
   }
   //Insert test project to database
+  await Project.build(testProject).save()
+  await Project.build(testProject).save()
+  await Project.build(testProject).save()
+  await Project.build(testProject).save()
   await Project.build(testProject).save()
 
   //Get projects currenty in database
@@ -43,20 +59,21 @@ const populateDb = async () => {
 
   //Create test sprint
   const testSprint = {
-    title: "testi sprintti",
-    description: "Testi sprintti description",
+    title: "Initial test sprint",
+    description: "Initial test sprint description",
     projectid: projects[0].id
   }
   //Insert test sprint in database
   await Sprint.build(testSprint).save()
-
+  await Sprint.build(testSprint).save()
+  await Sprint.build(testSprint).save()
   //Get sprints in database
   const sprints = await Sprint.findAll()
 
   //Create test task
   const testTask = {
-    title: "Testi taski",
-    description: "Testi",
+    title: "Initial test task",
+    description: "Initial test task description",
     state: 0,
     projectid: projects[0].id,
     sprintid: sprints[0].id
@@ -71,4 +88,7 @@ module.exports = {
   tasksInDb,
   destroyDb,
   populateDb,
+  testProject,
+  testSprint,
+  testTask
 }

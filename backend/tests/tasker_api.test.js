@@ -1,40 +1,19 @@
-const { test, after, beforeEach, describe } = require('node:test')
-const {Project, Sprint, Task} = require('../models/Tasker')
-
-const helper = require('./taskerhelper')
 const supertest = require('supertest')
 const app = require('../app')
 const api = (supertest(app))
+const projectTester = require('./tasker/project')
+const sprintTester = require('./tasker/sprint')
+const taskTester = require('./tasker/task')
+const { describe } = require('node:test')
 
-describe('Tasker tests' , () => {
-  describe('Tests for project' , () => {
-    beforeEach(async () => {
-      //Destroy all projects from database
-      await helper.destroyDb();
-      //Populate database with test objects
-      await helper.populateDb();
-    })
-    test('Projects are returned as json', async () => {
-      await api
-        .get('/api/tasker/projects')
-        .expect(200)
-        .expect('Content-Type', /application\/json/)
-    })
-    test('Project can be deleted by id', async () => {
-      let projects = await helper.projectsInDb()
-      let projectid = projects[0].id
-      await api
-        .delete(`/api/tasker/project/${projectid}`)
-        .expect(204)
-    })
-    describe('Tests for sprints' , () => {
-      
-    })
-    describe('Tests for tasks' , () => {
-      
-    })
+describe('Tasker tests:', () => {
+  describe('Tests for projects', () => {
+    projectTester(api)
   })
-})
-after(async () => {
-  app.close(done)
+  describe('Tests for sprints', () => {
+    sprintTester(api)
+  })
+  describe('Tests for tasks', () => {
+    taskTester(api)
+  })
 })

@@ -13,7 +13,7 @@ const update = (id, newContent, newName) => {
 }
 */
 const create = (newProject) => {
-  const request = axios.put(`${baseURL}/projects`, newProject)
+  const request = axios.post(`${baseURL}/projects`, newProject)
   return request.then(response => response.data)
 }
 export default {getAll, create}
