@@ -47,11 +47,6 @@ const Task = tasker.define('task', {
   description: {type: DataTypes.STRING },
 },{ sequelize: tasker, modelName: 'task' })
 
-Project.hasMany(Sprint)
-Sprint.hasMany(Task)
-Task.belongsTo(Sprint)
-Sprint.belongsTo(Project)
-
 module.exports = {
    Project, Sprint, Task
 }

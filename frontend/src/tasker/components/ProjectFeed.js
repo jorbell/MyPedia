@@ -1,26 +1,46 @@
+import useProjectFeed from '../hooks/useProjectFeed';
 
-import React, {useContext, useState } from 'react'
-import { projectContext } from '../Context'
+const ProjectForm = ({createProject}) => {
+  const submit = (event) => {
+    event.preventDefault()
+    let title = event.target.title.value
+    let description = event.target.description.value
+    createProject(title, description)
+  }
+  return (
+    <div className="projectform">
+      <form onSubmit={submit}>
+        <h3> New Project </h3>
+        Title: <input id="title" type="text" />
+        Description: <input id="description" type="text" />
+        <input type="submit" />
+      </form>
+    </div>
+  )
+}
+const ProjectCard = ({project, handleOnClick}) => {
 
-const Project = ({project}) => {
-  const {setCurrentProject} = useContext(projectContext);
   return(
-    <div className="projectcard" onClick={() => setCurrentProject(project)}>
+    <div className="projectcard" onClick={() => handleOnClick(project.id)}>
       <h1>{project.title}</h1>
       <p>{project.description}</p>
     </div>
   )
 }
-const ProjectFeed = ({projects}) => {
-  if (projects === undefined) return null;
+const ProjectFeed = () => {
+  const {projects, handleOnClick, createProject} = useProjectFeed()
   return (
-    <div className="projectfeed" >
-    {projects.map(project => {
-      return (
-        <Project key={project.id} project={project} />
-      )
-    }) }
-    </div>
-        )
+    <>
+      <ProjectForm createProject={createProject} />
+      {projects !== undefined ?
+        <div className="projectfeed" >
+        {projects.map(project => {
+          return ( <ProjectCard key={project.id} project={project} handleOnClick = {handleOnClick}/>)
+        })}
+        </div>
+        : null
+      }
+    </>
+  )
 }
 export default ProjectFeed

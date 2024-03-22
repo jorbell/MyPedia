@@ -43,43 +43,62 @@ const destroyDb = async () => {
 
 const populateDb = async () => {
   //Create test project
-  const testProject = {
-    title: "Initial test project",
-    description: "Initial test project description",
+  for (let i = 0; i < 4; i++) {
+    const testProject = {
+      title: `${i} initial test project`,
+      description: `${i}Initial test project description`,
+    }
+    await Project.build(testProject).save()
   }
-  //Insert test project to database
-  await Project.build(testProject).save()
-  await Project.build(testProject).save()
-  await Project.build(testProject).save()
-  await Project.build(testProject).save()
-  await Project.build(testProject).save()
 
   //Get projects currenty in database
-  const projects = await Project.findAll()
-
+  let projects = await Project.findAll()
+  projects = projects.map(p => p.dataValues)
+  
   //Create test sprint
-  const testSprint = {
-    title: "Initial test sprint",
-    description: "Initial test sprint description",
-    projectid: projects[0].id
+  for (let i = 0; i < projects.length; i++) {
+    for (let j = 0; j < 5; j++) {
+      const testSprint = {
+        title: `${i}:${j}Initial test sprint`,
+        description: "Initial test sprint description",
+        projectid: projects[i].id
+      }
+      //Insert test sprint in database
+      await Sprint.build(testSprint).save()
+    }
   }
-  //Insert test sprint in database
-  await Sprint.build(testSprint).save()
-  await Sprint.build(testSprint).save()
-  await Sprint.build(testSprint).save()
   //Get sprints in database
-  const sprints = await Sprint.findAll()
+  let sprints = await Sprint.findAll()
+  sprints = sprints.map(s => s.dataValues)
+
 
   //Create test task
-  const testTask = {
-    title: "Initial test task",
-    description: "Initial test task description",
-    state: 0,
-    projectid: projects[0].id,
-    sprintid: sprints[0].id
+  for (let i = 0; i < sprints.length; i++) {
+    for (let j = 0; j < 5; j++) {
+      const testTask = {
+        title: "Initial test task",
+        description: "Initial test task description",
+        state: 0,
+        projectid: sprints[i].projectid,
+        sprintid: sprints[i].id
+      }
+      //Insert test task to database
+      await Task.build(testTask).save()
+    }
   }
-  //Insert test task to database
-  await Task.build(testTask).save()
+  for (let i = 0; i < projects.length; i++) {
+    for (let j = 0; j < 5; j++) {
+      const testTask = {
+        title: `${i}:${j}Initial test task`,
+        description: "Initial test task description",
+        state: 0,
+        projectid: projects[i].id,
+      }
+      //Insert test task to database
+      await Task.build(testTask).save()
+    }
+  }
+
 }
 
 module.exports = {

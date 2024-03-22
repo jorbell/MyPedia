@@ -121,31 +121,25 @@ taskerRouter.get('/tasks', async (req, res) => {
   const tasks = await Task.findAll()
   res.status(200).json(tasks)
 })
-//Create a task
+//Create task
 taskerRouter.post('/tasks', async (req, res) => {
-  let newTask = Task.build(req.body)
+  let task = {...req.body, state: 0, sprintid: 0 }
+  let newTask = Task.build(task)
   let savedTask = await newTask.save();
   if (savedTask) {
     res.status(201).json(savedTask)
   }
   res.status(404).end()
 })
-//Update a task
+//Update task
 taskerRouter.put('/tasks/:id', async (req, res) => {
   let cid = req.params.id
   let newTask = req.body
-  await Task.update(
+  let result = await Task.update(
     newTask,
     {where: {id: cid}}
   )
-  const projects = await Project.findAll()
-  const sprints = await Sprint.findAll({include: Task})
-  let reply = projects.map((project) => ({
-      ...project.dataValues,
-      sprints: sprints.filter(s => s.projectid === project.id)
-    }));
-
-  res.json(reply);
+  res.status(200).json(result);
 })
 //Delete task
 taskerRouter.delete('/tasks/:id', async (req, res) => {

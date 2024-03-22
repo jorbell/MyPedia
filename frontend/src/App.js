@@ -44,6 +44,10 @@ const App = () => {
               exact path="/tasker"
               element={<Tasker />}
             />
+            <Route
+              exact path="/tasker/:project"
+              element={<Tasker />}
+            />
           </Routes>
       </HashRouter>
     </div>

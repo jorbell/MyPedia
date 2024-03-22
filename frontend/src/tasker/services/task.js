@@ -1,15 +1,18 @@
 import axios from 'axios'
 const baseURL = '/api/tasker'
 
+const getAll = () => {
+  const request = axios.get(`${baseURL}/projects`)
+  return request.then(response => response.data)
+}
 const create = (newTask) => {
-  const request = axios.put(`${baseURL}/tasks`, newTask)
-  console.log(newTask)
+  const request = axios.post(`${baseURL}/tasks`, newTask)
   return request.then(response => response.data)
 }
 const update = (newTask) => {
   const request = axios.put(`${baseURL}/tasks/${newTask.id}`, newTask)
   return request.then(response => response.data)
-  console.log(newTask);
 }
 
-export default {create, update}
+
+export default {create, update, getAll}

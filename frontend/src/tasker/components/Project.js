@@ -1,21 +1,17 @@
-import Settings from './Settings'
 import TaskFeed from './TaskFeed'
+import useProject from '../hooks/useProject'
 
-const Project = ({projects, filter, setFilter, setProjects, project}) => {
-  return ( 
-    <>
-      <h1> {project.title }</h1>
-      <p> {project.description }</p>
-      <Settings 
-        projects={projects}
-        setFilter={setFilter}
-      />
-      <TaskFeed 
-        projects={projects} 
-        filter={filter}
-        setProjects={setProjects}
-      />
-    </>
-  )
+const Project = ({id}) => {
+  const {project, setProject} = useProject(id);
+  if(project !== undefined) {
+    return ( 
+      <>
+        <h1> {project.title }</h1>
+        <p> {project.description }</p>
+        <TaskFeed projectid={id} 
+        />
+      </>
+    )
+  }
 }
 export default Project;

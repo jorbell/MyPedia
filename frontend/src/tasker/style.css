@@ -46,10 +46,20 @@
     color: white;
     border-style:solid;
     border-color:#242;
-    
     .sprintheader{
       display:flex;
+      flex-direction:row;
       background-color:#111;
+      width:100%;
+      .sprintinfo {
+      width:100%;
+      }
+      .buttons{
+        justify-content:right;
+        display:flex;
+        width:100%;
+
+      }
     }
 
 
@@ -69,10 +79,13 @@
       padding: 2px;
       border-style:solid;
       .info {
-        width:85%;
+        display:flex;
+        width:100%;
       }
       .buttons {
-        width:15%;
+        display:flex;
+        width:100%;
+        justify-content:right;
         select {
           margin:4px;
         }
