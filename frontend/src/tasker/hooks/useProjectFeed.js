@@ -2,6 +2,7 @@ import {useCallback, useEffect, useState} from "react";
 import useFetch from "./useFetch";
 import {useNavigate} from "react-router-dom";
 import projectService from '../services/project'
+import useForm from "./useForm";
 
 const useProjectFeed = () => {
   const [projects, setProjects] = useState();
@@ -24,7 +25,8 @@ const useProjectFeed = () => {
         setProjects([...projects, result])
       })
   }
-  return {projects, handleOnClick, createProject}
+  const projectForm = useForm("Create project:", "projectform", createProject)
+  return {projects, handleOnClick, createProject, projectForm}
 
 }
 export default useProjectFeed

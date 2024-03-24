@@ -1,19 +1,23 @@
-import ProjectFeed from './components/ProjectFeed'
-import Project from './components/Project'
-import './style.css'
 import {useParams} from 'react-router-dom'
+import Project from './pages/Project'
+import ProjectFeed from './pages/ProjectFeed'
+import useProjectFeed from './hooks/useProjectFeed'
+import './styles/Tasker.css'
+import {useEffect, useState} from 'react'
 
-const Header = () => <h1> Tasker </h1>
 const Tasker = () => {
-  const params = useParams()
+  const projectFeed = useProjectFeed()
+  const [params, setParams] = useState({})
+  const initParams = useParams()
+
+  useEffect(() => {
+    setParams(initParams)
+  },[initParams])
+
   return (
     <div className="tasker">
       {params.project === undefined ? 
-        <>
-          <Header />
-          <ProjectFeed />
-        </>
-      :
+      <ProjectFeed {...projectFeed}/> :
         <Project id={params.project}/>
     }
     </div>

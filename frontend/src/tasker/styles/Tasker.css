@@ -1,0 +1,10 @@
+.tasker {
+  background-color:#111;
+  height:calc(100vh - var(--nav-height));
+  color: white;
+  display: flex;
+  align-items:center;
+  flex-direction:column;
+  overflow-y:auto;
+  overflow-x:hidden;
+}

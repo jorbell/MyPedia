@@ -1,0 +1,8 @@
+.projectfeed {
+  display: flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  width:80%;
+  padding: 20px;
+
+}

@@ -1,55 +1,30 @@
-import { HashRouter as Router,Routes,HashRouter,Route} from 'react-router-dom'
+import { Routes,Route} from 'react-router-dom'
 import './index.css'
-import React, {useEffect} from 'react'
+import React from 'react'
 import NavigationBar from './components/NavigationBar'
 import Library from './library/Library'
-import Helmet from './helmet/helmet'
 import Home from './home/Home'
 import YouTuber from './youtuber/YouTuber'
 import Tasker from './tasker/Tasker'
+import useApp from './hooks/useApp'
+import useRoute from './hooks/useRoute'
+
 const App = () => {
+  const {nav} = useApp()
+  const home = useRoute("/", <Home />)
+  const library = useRoute("/library", <Library />)
+  const book = useRoute("/library/:book", <Library />)
+  const youtuber = useRoute("/youtuber", <YouTuber />)
+  const tasker = useRoute("/tasker", <Tasker />)
+  const project = useRoute("/tasker/:project", <Tasker />)
+
+  const routes = [home, library, book, youtuber, tasker, project]
   return (
     <div className="App">
-      <HashRouter>
-        <NavigationBar />
-          <Routes>
-            <Route
-              key="/"
-              exact path=""
-              element={<Home />}
-            />
-            <Route
-              key="/"
-              exact path="/home"
-              element={<Home />}
-            />
-            <Route
-              key="/"
-              exact path="/library"
-              element={<Library />}
-            />
-            <Route
-              exact path="/library/:book"
-              element={<Library />}
-            />
-            <Route
-              exact path="/helmet"
-              element={<Helmet />}
-            />
-            <Route
-              exact path="/youtuber"
-              element={<YouTuber />}
-            />
-            <Route
-              exact path="/tasker"
-              element={<Tasker />}
-            />
-            <Route
-              exact path="/tasker/:project"
-              element={<Tasker />}
-            />
-          </Routes>
-      </HashRouter>
+      <NavigationBar {...nav}/>
+      <Routes>
+        {routes.map(route => <Route {...route} /> )}
+      </Routes>
     </div>
   );
 }

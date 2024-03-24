@@ -46,7 +46,11 @@ const Task = tasker.define('task', {
   state: {type: DataTypes.STRING },
   description: {type: DataTypes.STRING },
 },{ sequelize: tasker, modelName: 'task' })
+const TaskState = tasker.define('taskState', {
+  name: {type: DataTypes.STRING },
+},{ sequelize: tasker, modelName: 'taskState' })
+
 
 module.exports = {
-   Project, Sprint, Task
+   Project, Sprint, Task, TaskState
 }

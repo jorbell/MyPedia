@@ -1,35 +1,15 @@
-import './navigationBar.css'
 import { Link } from 'react-router-dom'
-const NavigationBar = () => {
+import PageLogo from './ui/PageLogo'
+
+const NavigationBar = ({links, logo}) => {
+  const style = {
+    display: "flex",
+    height: 48
+  }
     return (
-      <div className="topnav">
-        <Link className="pagelogo" to="" >MyPedia</Link>
-          <div className="topnavLinks">
-              <Link to="helmet"
-                key="helmet"
-                className="inactive"
-                  > 
-                Helmet
-              </Link>
-              <Link to="library"
-                key="library"
-                className="inactive"
-                  > 
-                Library
-              </Link>
-              <Link to="tasker"
-                key="tasker"
-                className="inactive"
-                  > 
-                Tasker
-              </Link>
-              <Link to="youtuber"
-                key="youtuber"
-                className="inactive"
-                  > 
-                YouTuber
-              </Link>
-          </div>
+      <div style={style}>
+      <PageLogo {...logo}/>
+      {links.map(link => <Link {...link} />)}
       </div>
     )
 }

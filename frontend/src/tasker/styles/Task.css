@@ -1,0 +1,30 @@
+.task {
+  display:flex;
+  flex-direction:row;
+  background-color:#333;
+  margin-left: 20px;
+  border-top:solid;
+  border-width: 1px;
+  border-color:black;
+  color: black;
+  background-color: white;
+  .info {
+    display:flex;
+    width:100%;
+    p {
+      font-size: 14px;
+      margin: 5px;
+    }
+    b {
+      font-size: 14px;
+    }
+  }
+  .buttons {
+    display:flex;
+    width:20%;
+    justify-content:right;
+    button {
+      height: 20px;
+    }
+  }
+}

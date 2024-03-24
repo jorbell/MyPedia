@@ -1,29 +1,7 @@
+import '../styles/Task.css'
 import useTask from '../hooks/useTask'
+import Select from './ui/Select'
 
-const SprintSelect = ({onChange, thisSprint, sprints}) => {
-  return (
-    <select onChange={onChange}>
-      {thisSprint !== undefined ?
-       <option defaultValue={thisSprint.id}>{thisSprint.title} </option>
-        : <option defaultValue={0}>Backlog</option>
-      }
-      <option defaultValue={0}>Backlog</option>
-      {sprints.map((sprint) => 
-        <option key={sprint.id} value={sprint.id}>{sprint.title} </option>
-      )}
-    </select>
-  )
-}
-const StateSelect = ({onChange, task, states }) => {
-  return (
-    <select onChange={onChange}>
-      <option defaultValue={task.state}> {states[task.state].name} </option>
-      {states.map(s => 
-        <option key={s.value} value={s.value}> {s.name} </option>
-      )}
-    </select>
-  )
-}
 const Info = ({task}) => {
   return (
     <div className="info"> 
@@ -31,27 +9,14 @@ const Info = ({task}) => {
     </div>
   )
 }
-const Task = ({task, updateTask}) => {
-  const {states, sprints, thisSprint } = useTask(task)
-  const updateState = (event) => {
-    let newTask = {...task,
-      state: event.target.value
-    }
-    updateTask(newTask)
-  }
-  const updateSprint = (event) => {
-    let newTask = {...task,
-      sprintid: parseInt(event.target.value)
-    }
-    updateTask(newTask)
-  }
+const Task = ({task, sprints,updateTask, states}) => {
+  const {stateSelect, sprintSelect} = useTask(task, sprints, updateTask, states)
   return (
     <div className="task">
       <Info task={task} />
       <div className="buttons"> 
-        <SprintSelect onChange={updateSprint} thisSprint={thisSprint} sprints={sprints}/>
-        <StateSelect onChange={updateState} task={task} states={states} />
-        <br />
+        <Select {...stateSelect} />
+        <Select {...sprintSelect} />
       </div>
     </div>
   )

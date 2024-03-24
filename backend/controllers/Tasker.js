@@ -1,4 +1,4 @@
-const { Project, Sprint, Task} = require('../models/Tasker')
+const { Project, Sprint, Task, TaskState} = require('../models/Tasker')
 const taskerRouter = require('express').Router()
 
 //Get all projects
@@ -123,7 +123,7 @@ taskerRouter.get('/tasks', async (req, res) => {
 })
 //Create task
 taskerRouter.post('/tasks', async (req, res) => {
-  let task = {...req.body, state: 0, sprintid: 0 }
+  let task = {...req.body, state: 0}
   let newTask = Task.build(task)
   let savedTask = await newTask.save();
   if (savedTask) {
@@ -157,6 +157,15 @@ taskerRouter.get('/tasks/:id', async (req, res) => {
     return res.status(404).end()
   }
   res.status(200).json(task.dataValues)
+})
+
+//Get task by id
+taskerRouter.get('/taskstates', async (req, res) => {
+  let states = await TaskState.findAll()
+  if (states === null) {
+    return res.status(404).end()
+  }
+  res.status(200).json(states)
 })
 
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import projectService from '../services/project'
+import stateService from '../services/state'
 
 
 const useFetch = () => {
@@ -47,11 +48,25 @@ const useFetch = () => {
     }, [id])
     return tasks;
   }
+  const useFetchTaskStates = () => {
+    const [states, setStates] = useState([])
+    useEffect(() => {
+      stateService
+        .getAll()
+        .then(result => {
+          setStates(result)
+        })
+    },[])
+
+    return states
+  }
+
   return {
     getTasks: useFetchTasks, 
     getSprints: useFetchSprints, 
     getProjectById: useFetchSingleProject, 
-    getProjects: useFetchProjects
+    getProjects: useFetchProjects,
+    getTaskStates: useFetchTaskStates
   }
 }
 
