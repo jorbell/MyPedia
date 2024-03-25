@@ -1,6 +1,6 @@
 /*Background div of the home page.*/
 .home {
-  background-image:url("../../public/background2.jpg");
+  background-image:url("../../../public/background2.jpg");
   background-position:center;
   background-size: cover;
   background-repeat: no-repeat;

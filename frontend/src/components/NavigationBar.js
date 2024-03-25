@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import PageLogo from './ui/PageLogo'
+import PageLogo from './PageLogo'
 import useNavigationBar from '../hooks/useNavigationBar'
 
 const NavigationBar = () => {

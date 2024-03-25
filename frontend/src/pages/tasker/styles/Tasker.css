@@ -1,6 +1,6 @@
 .tasker {
   background-color:#111;
-  height:calc(100vh - var(--nav-height));
+  height:calc(100vh - 48px);
   color: white;
   display: flex;
   align-items:center;

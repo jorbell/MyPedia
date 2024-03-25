@@ -1,9 +1,9 @@
 import { Routes,Route} from 'react-router-dom'
-import Home from '../../home/Home'
-import Tasker from '../../tasker/Tasker'
-import useRoute from '../../hooks/useRoute'
-import YouTuber from '../../youtuber/YouTuber'
-import Library from '../../library/Library'
+import Home from '../pages/home/Home'
+import Tasker from '../pages/tasker/Tasker'
+import YouTuber from '../pages/youtuber/YouTuber'
+import Library from '../pages/library/Library'
+import useRoute from '../hooks/useRoute'
 
 const Router = () => {
   const home = useRoute("/", <Home />)

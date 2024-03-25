@@ -1,5 +1,5 @@
 .book-selector {
-  height: var(--nav-height);
+  height: 48px;
   overflow:hidden;
   white-space:nowrap;
   background-color: #343434;

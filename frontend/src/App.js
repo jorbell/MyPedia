@@ -1,7 +1,6 @@
-import './index.css'
 import React from 'react'
 import NavigationBar from './components/NavigationBar'
-import Router from './components/ui/Router'
+import Router from './components/Router'
 
 const App = () => {
   return (

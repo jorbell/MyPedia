@@ -34,27 +34,30 @@
   color: white;
   background-color: #222;
   padding: 10px;
+  width: calc(100vw - 370px);
 }
 
 .editor-content{
-  overflow:auto;
-  background-color:white;
-  //margin: auto;
-  padding: 50px;
+  /*
+  background-color: black;
+  color: teal;
+  */
+  background-color: white;
+  padding: 20px;
   height: 100%;
-  //width: 100%;
-  //width: calc(100% - 50px - 50px);
+  overflow:auto;
+  width: calc(100vw - 370px - 20px);
 }
 
 
 .ProseMirror {
   text-align:justify;
   height:90%;
-  //width: 100%;
+  width: 100%;
 }
 .ProseMirror:focus {
-  //outline:none;
-  text-align:justify;
+  outline:none;
+  //text-align:justify;
 }
 .tiptap {
   margin: 1rem 0;
@@ -70,8 +73,7 @@
 
   h1,
   h2,
-  h3,
-  h4,
+  h3, h4,
   h5,
   h6 {
     line-height: 1.1;
@@ -118,8 +120,10 @@
   }
   table {
     border-collapse: collapse;
-    table-layout: fixed;
-    width: 100%;
+    //table-layout: fixed;
+    //width: 100%;
+    //min-width: 100%;
+    max-width: 100%;
     margin: 0;
     overflow: hidden;
 
