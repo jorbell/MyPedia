@@ -1,19 +1,16 @@
-import { useState} from "react"
+import {useState} from "react"
 import {useLocation} from "react-router-dom"
-const useLink = (to, children) => {
+const useBookLink = (to, children) => {
   const loc = useLocation()
   const [hover, setHover] = useState(false);
 
   const style = {
-    color: 'black',
+    color: 'white',
     padding: "14px 16px"
   }
-  if (loc.pathname.includes(to)){
-    style.color = 'white'
+  //Set background-color if the book is selected
+  if (to.includes(loc.pathname) && loc.pathname !== "/library") {
     style.backgroundColor = '#666'
-  }
-  else {
-    style.color = 'black'
   }
   if (hover) {
     style.color = 'white'
@@ -29,4 +26,4 @@ const useLink = (to, children) => {
 
   return {key:to, to, children, style, onMouseEnter, onMouseLeave}
 }
-export default useLink
+export default useBookLink

@@ -1,0 +1,27 @@
+.book-selector {
+  height: var(--nav-height);
+  overflow:hidden;
+  white-space:nowrap;
+  background-color: #343434;
+  display:flex;
+
+  .books {
+    height: var(--nav-height);
+    display:flex;
+    width:100%;
+  }
+  /* Button for adding book */
+  .addBook {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color: white;
+    padding:6px;
+    margin:3px;
+    font-weight:bold;
+    border-style:solid;
+    border-width:2px;
+    border-color:gray;
+
+  }
+}

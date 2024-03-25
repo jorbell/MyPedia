@@ -17,9 +17,9 @@ const Tasker = () => {
   return (
     <div className="tasker">
       {params.project === undefined ? 
-      <ProjectFeed {...projectFeed}/> :
+        <ProjectFeed {...projectFeed}/> :
         <Project id={params.project}/>
-    }
+      }
     </div>
   )
 }

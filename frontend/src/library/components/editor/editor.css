@@ -2,72 +2,58 @@
 /* Tip top Configuration */
 /* Tip top ProseMirror div (Area with the text) */
 /* Container for menu and content*/
-.Editor {
+.editor {
   background-color: gray;
   width: 100%;
   float: center;
   display: flex;
   flex-direction: column;
+  pre {
+    color:white;
+    background-color:#3f3f3f;
+    padding:8px;
+    margin-left:5%;
+    border-radius: 8px;
+    width: 85%;
+  }
+
+  ul, ol {
+    padding: 0 1rem;
+  }
+  button {
+    height: 25px;
+    width: 50px;
+    padding: 0px;
+  }
+  button.is-active {
+    background-color:#9f9f9f;
+  }
 }
 /* Menu bar with buttons, book name, chapter name etc */
 .editor-menu {
   color: white;
-  background-color:black;
-  border-style: solid;
-  border-width: 1px;
-  border-color: white;
-  margin: 5px;
+  background-color: #222;
   padding: 10px;
 }
 
 .editor-content{
-  padding: var(--content-padding);
   overflow:auto;
-  background-color:var(--editor-bgcolor);
-  margin: auto;
-  min-width: 700px;
-  max-width:700px;
+  background-color:white;
+  //margin: auto;
   padding: 50px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.5);
-}
-/* Sub div centered on bookview */
-.editor-area {
-  overflow:scroll;
-  margin: auto;
-  color: #000000;
-  background-color:var(--editor-bgcolor);
+  height: 100%;
+  //width: 100%;
+  //width: calc(100% - 50px - 50px);
 }
 
-pre {
-  color:white;
-  background-color:#3f3f3f;
-  padding:8px;
-  margin-left:5%;
-  border-radius: 8px;
-  width: 85%;
-}
-
-ul, ol {
-  padding: 0 1rem;
-}
-button {
-  height: 30px;
-  width: 50px;
-  padding: 0px;
-}
-button.is-active {
-  background-color:#9f9f9f;
-}
 
 .ProseMirror {
-  //padding: 10px;
   text-align:justify;
+  height:90%;
+  //width: 100%;
 }
 .ProseMirror:focus {
-  outline:none;
-  //padding: 10px;
+  //outline:none;
   text-align:justify;
 }
 .tiptap {
@@ -93,7 +79,7 @@ button.is-active {
 
 
   li {
-    line-height:0.5;
+    line-height:0.8;
   }
   ul, ol {
     margin-bottom: 40px;

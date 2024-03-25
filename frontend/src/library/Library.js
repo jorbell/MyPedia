@@ -1,68 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import './Library.css'
-import Book from './components/Book'
+import Book from './pages/Book'
+import Home from './pages/Home'
 import BookSelector from './components/BookSelector'
 import booksService from './services/books'
 import chapterService from './services/chapter'
 import { bookContext } from './Context'
 
-import {mdiArrowUpThin} from '@mdi/js'
-import Icon from '@mdi/react'
-
-
-const TopLeft= () => {
-  return (
-        <div className='top-left ani-4'>
-            <Icon path={mdiArrowUpThin} 
-              className="arrow-up"
-              size={1.5}
-              />
-            <h2>Choose a book from here. </h2>
-        </div>
-  )
-}
-const TopRight= () => {
-  return (
-        <div className='top-right ani-5'>
-          <h2>Or create a new one.</h2>
-          <Icon path={mdiArrowUpThin} 
-            className="arrow-up"
-            size={1.5}
-            />
-        </div>
-  )
-}
-const Top = () => {
-  return (
-      <div className='top'>
-        <TopLeft />
-        <TopRight />
-      </div>
-  )
-}
-const Bottom = () => {
-  return (
-    <div className='bottom'>
-        <h1 className='ani-1'> Welcome! </h1>
-        <p className='ani-2'>
-          This is my library.
-        </p>
-        <p className='ani-3'>
-          Here I plan my projects and studies, write diaries and notes. 
-        </p>
-    </div>
-  )
-
-}
-const Home = () => {
-  return (
-    <div className='library-home'>
-      <Top />
-      <Bottom />
-    </div>
-  )
-}
 const Library = () => {
   let initChapter = { "name": "", "content": "" }
   let initBook = { "name": "init", "chapters":[initChapter] }
@@ -155,26 +100,19 @@ const Library = () => {
   }
   return (
     <div className="LibraryApp">
-        <BookSelector 
-          books={books}
-          addBook={addBook}
-        />
-        {params.book === undefined ?
-        <Home /> :
-        <bookContext.Provider 
-          value={{
-            handleSave, 
-            handleDeleteChapter
-          }}>
-          <Book
-            currentBook={currentBook}
-            currentChapter={currentChapter}
-            addChapter={addChapter}
-            setCurrentChapter={setCurrentChapter}
-            handleDeleteChapter={handleDeleteChapter}
-            handleSave={handleSave}
-          /> 
-        </bookContext.Provider >
+      <BookSelector books={books} addBook={addBook} />
+      {params.book === undefined ?
+      <Home /> :
+      <bookContext.Provider value={{ handleSave, handleDeleteChapter }}>
+        <Book
+          currentBook={currentBook}
+          currentChapter={currentChapter}
+          addChapter={addChapter}
+          setCurrentChapter={setCurrentChapter}
+          handleDeleteChapter={handleDeleteChapter}
+          handleSave={handleSave}
+        /> 
+      </bookContext.Provider >
       }
     </div>
   )

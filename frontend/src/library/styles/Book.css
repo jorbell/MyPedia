@@ -1,0 +1,5 @@
+.book-view {
+  display: flex;
+  height: calc(100vh - 48px - 48px);
+}
+

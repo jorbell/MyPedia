@@ -1,14 +1,14 @@
-import { useState} from "react"
-import {useLocation} from "react-router-dom"
-const useLink = (to, children) => {
-  const loc = useLocation()
+import {useState} from "react";
+
+const useChapterButton = (chapterName, onClick, isActive) => {
   const [hover, setHover] = useState(false);
 
   const style = {
     color: 'black',
-    padding: "14px 16px"
+    //padding: "14px 16px"
   }
-  if (loc.pathname.includes(to)){
+  //if (loc.pathname.includes(to)){
+  if (isActive) {
     style.color = 'white'
     style.backgroundColor = '#666'
   }
@@ -26,7 +26,6 @@ const useLink = (to, children) => {
     setHover(false)
   }
 
-
-  return {key:to, to, children, style, onMouseEnter, onMouseLeave}
+  return {name:chapterName, onClick, style, children:chapterName, onMouseEnter, onMouseLeave}
 }
-export default useLink
+export default useChapterButton

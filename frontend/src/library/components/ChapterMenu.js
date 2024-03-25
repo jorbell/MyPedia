@@ -1,12 +1,7 @@
 import {useState} from 'react'
-const Chapter = ({isActive, name, onClick}) => {
-  return(
-    <button className={isActive ? "active" :"inactive"}
-      onClick={onClick} >
-      <p>{name}</p>
-    </button>
-  )
-}
+import '../styles/ChapterMenu.css'
+import ChapterButton from './ChapterButton'
+
 const ChapterTools = ({addChapter, isHidden, setIsHidden}) => {
   return (
     <div className="chapter-tools">
@@ -15,7 +10,6 @@ const ChapterTools = ({addChapter, isHidden, setIsHidden}) => {
       <p className="hideChapters" onClick={() => setIsHidden(!isHidden)}> = </p>
     </div>
   )
-
 }
 const ChapterMenu = ({chapters, currentChapter, setCurrentChapter,addChapter}) => {
   /* Sort chapters alpabetically */
@@ -24,12 +18,13 @@ const ChapterMenu = ({chapters, currentChapter, setCurrentChapter,addChapter}) =
     else if (a.name > b.name)  return 1
     else return 0
   })
+
   const [isHidden, setIsHidden] = useState(true)
   return (
     <div className={isHidden ? "chapter-menu" : "chapter-menu minimized"}>
-      <div>
+      <div className={"chapter-buttons"}>
         {chapters.map(chapter => 
-          <Chapter
+          <ChapterButton
             key={chapter.name}
             name={chapter.name}
             isActive={currentChapter.id === chapter.id} 

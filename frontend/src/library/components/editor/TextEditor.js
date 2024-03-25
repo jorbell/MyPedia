@@ -1,4 +1,3 @@
-
 import {Color} from '@tiptap/extension-color'
 import Table from '@tiptap/extension-table'
 import TableHeader from '@tiptap/extension-table-header'
@@ -42,33 +41,19 @@ const TextEditor = ({chapter}) => {
       resizable: true,
     }),
   ]
-  const [editable, setEditable] = useState(true)
   const [content, setContent] = useState(chapter.content)
 
   const editor = useEditor({
-    editable,
     extensions,
     content:content,
     onUpdate(){
       setContent(editor.getHTML())
     },
   })
-  const toggleEdit = () => { 
-    setEditable(!editable) 
-    editor.setEditable(!editable)
-  }
   return (
-    <div className="Editor">
-      <EditorMenu 
-        editor={editor} 
-        toggleEdit={toggleEdit} 
-        chapter={chapter}
-      />
-        <EditorContent 
-          className="editor-content" 
-          editor={editor} 
-          spellCheck="false" 
-        />
+    <div className="editor">
+      <EditorMenu editor={editor} chapter={chapter} />
+      <EditorContent className="editor-content" editor={editor} spellCheck="false" />
     </div>
   )
 }
