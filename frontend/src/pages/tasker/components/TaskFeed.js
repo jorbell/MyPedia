@@ -7,10 +7,16 @@ const divStyle = {
   width: "80%"
 }
 
-const TaskFeed = ({projectid, sprints, updateTask, states}) => (
-  <div style={divStyle} key={`project${projectid}`}>
+const TaskFeed = ({sprints, updateTask, states, popup}) => (
+  <div style={divStyle}>
     {sprints.map(sprint =>  
-      <Sprint key={sprint.id} sprint={sprint} states={states} sprints={sprints} updateTask={updateTask} />
+      <Sprint 
+        key={sprint.id} 
+        sprint={sprint} 
+        states={states} 
+        sprints={sprints} 
+        popup={popup}
+        updateTask={updateTask} />
     )}
   </div>
 )

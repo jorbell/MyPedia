@@ -11,18 +11,18 @@
   }
 }
 .chapter-menu {
-  width: 350px;
-  min-width: 350px;
-  max-width:350px;
+  width: 250px;
+  min-width: 250px;
+  max-width:250px;
   background-color: #141414;
   height: 100%;
   display:grid;
   grid-template-rows: 1fr auto;
 }
 .chapter-buttons {
-  width: 350px;
-  min-width: 350px;
-  max-width:350px;
+  width: 250px;
+  min-width: 250px;
+  max-width:250px;
   button {
     cursor:pointer;
     width:100%;
@@ -39,6 +39,8 @@
   display:grid;
   grid-template-rows: 1fr auto;
   width: 70px;
+  min-width: 70px;
+  max-width: 70px;
   height: var(--view-height);
   background-color: #141414;
   box-shadow: 0px var(--shadow-size) var(--shadow-size) var(--shadow-color);

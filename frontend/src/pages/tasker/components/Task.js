@@ -2,12 +2,11 @@ import '../styles/Task.css'
 import useTask from '../hooks/useTask'
 import Select from './ui/Select'
 
-const Task = ({task, sprints,updateTask, states}) => {
+const Task = ({task, sprints,updateTask, states, popup}) => {
   const {stateSelect, sprintSelect} = useTask(task, sprints, updateTask, states)
 
-  let style = {
-
-  }
+  //Default color
+  let style = { backgroundColor: '#ecc' }
   //Not started
   if (task.state === '0'){ style={ backgroundColor:'#ecc' }}
   //Started
@@ -21,6 +20,11 @@ const Task = ({task, sprints,updateTask, states}) => {
       </div>
       <Select {...stateSelect} />
       <Select {...sprintSelect} />
+      <button 
+        key={task.id}
+        onClick={() => popup.openTask(task)}
+        children={"Edit"}
+      />
     </div>
   )
 }

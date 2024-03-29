@@ -1,8 +1,6 @@
 const TableButtons = ({ editor }) => {
   return (
-    <>
-      Table:
-      <br />
+    <div>
       <button onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>
         Ins
       </button>
@@ -63,7 +61,7 @@ const TableButtons = ({ editor }) => {
         goToPreviousCell
       </button>
       */}
-    </>
+    </div>
   )
 }
 export default TableButtons

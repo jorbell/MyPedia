@@ -5,7 +5,11 @@ const useForm = (text, className, submit) => {
   const description = useField('text')
   const onSubmit = (event) => {
     event.preventDefault()
-    submit(title.field.value, description.field.value)
+    const newObject = {
+      title: title.field.value,
+      description: description.field.value
+    }
+    submit(newObject)
     title.clear()
     description.clear()
   }

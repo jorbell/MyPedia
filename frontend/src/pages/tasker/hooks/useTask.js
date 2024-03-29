@@ -1,37 +1,15 @@
-import {useEffect, useState} from "react"
-const useSelect = (onChange, defaultValue, options) => {
-  const [value, setValue] = useState(defaultValue)
-
-  useEffect(() => {
-    setValue(defaultValue)
-  },[defaultValue, setValue])
-  
-  const handleOnChange = (event) => {
-    setValue(event.target.value)
-    onChange(event)
-  }
-
-  return {
-    onChange: handleOnChange,
-    value,
-    options
-  }
-
-}
+import useSelect from "./useSelect"
 const useTask = (task, sprints, updateTask, states) => {
   let sprintValues = sprints.map(s => ({ id:s.id, name:s.title }))
 
-  const updateState = (event) => {
-    updateTask({...task, state:event.target.value})
+  const updateState = (id) => {
+    updateTask({...task, state:id})
   }
-  const updateSprint = (event) => {
-    let id = event.target.value;
+  const updateSprint = (id) => {
     if (id === "bl") id = null
     else id = parseInt(id)
-
-    updateTask({...task, sprintid:id})
+    updateTask({...task, sprintid: id})
   }
-
   const sprintSelect = useSelect(updateSprint, task.sprintid === null ? "bl" : task.sprintid, sprintValues)
   const stateSelect = useSelect(updateState, task.state, states)
 

@@ -1,15 +1,16 @@
 import {useEffect, useState} from 'react';
 import useFetch from './useFetch';
 import useTaskFeed from '../hooks/useTaskFeed';
-import sprintService from '../services/sprint'
-import taskService from '../services/task'
 import useForm from './useForm';
-
+import usePopup from '../hooks/usePopup';
+import useDatabase from './useDatabase';
+import useEditTask from './useEditTask';
+import useEditSprint from './useEditSprint';
 
 const useProject = (id) => {
   //Import data fetching hooks
   const {getProjectById, getTasks, getSprints} = useFetch()
-  
+  const db = useDatabase();
   //Initialise project, tasks and sprints
   const initialProject = getProjectById(id)
   const initialSprints = getSprints(id)
@@ -27,50 +28,48 @@ const useProject = (id) => {
     setTasks(initialTasks)
   }, [initialProject, initialSprints, initialTasks])
 
-  const createSprint = (title, description) => {
-    const newSprint = {
-      title: title, 
-      description: description,
-      id: null,
-      projectid:id,
-    }
-    sprintService
-      .create(newSprint)
-      .then(result => {
-        setSprints([...sprints, result])
-      })
+  const handleCreateSprint = (sprint ) => {
+    setSprints([...sprints, sprint])
+    popup.close()
   }
-  const createTask = (title, description) => {
-    const newTask = {
-      title: title,
-      description: description,
-      sprintid: null, 
-      projectid: id
-    }
-    taskService
-      .create(newTask)
-      .then(result => {
-        const newTasks = [...tasks, result]
-        setTasks(newTasks)
-        setSprints(sprints)
-      })
+  const handleCreateTask = (task) => {
+    const newTasks = [...tasks, task]
+    setTasks(newTasks)
+    popup.close()
   }
-  const updateTask = (task) => {
-    taskService
-      .update(task)
-      .then(result => { 
-        const newTasks = tasks.map(t => {
-          if(t.id === task.id) return task
-          else return t
-        })
-        setTasks(newTasks)
-      })
+  const handleUpdateSprint = (sprint) => {
+    const newSprints = sprints.map(s => {
+      if(s.id === sprint.id) return sprint
+      else return s
+    })
+    setSprints(newSprints)
+    popup.close()
+  }
+  const handleUpdateTask = (task) => {
+    const newTasks = tasks.map(t => {
+      if(t.id === task.id) return task
+      else return t
+    })
+    setTasks(newTasks)
+    popup.close()
   }
 
-  const taskfeed = useTaskFeed(id, tasks, sprints, updateTask)
+  const updateTask = (task) => { db.updateTask(task, handleUpdateTask) }
+  const updateSprint = (task) => { db.updateSprint(task, handleUpdateSprint) }
+  const createTask = (task) => { db.createTask({...task, projectid:id}, handleCreateTask) }
+  const createSprint = (sprint) => { db.createSprint({...sprint, projectid:id}, handleCreateSprint) }
+
   const sprintForm = useForm("Create sprint: ", "taskform", createSprint)
   const taskForm = useForm("Create task: ", "taskform", createTask)
+  const taskEditor = useEditTask(updateTask);
+  const sprintEditor = useEditSprint(updateSprint)
 
-  return {project, taskfeed, sprintForm, taskForm}
+  const popup = usePopup(sprintForm, taskForm, taskEditor, sprintEditor)
+
+
+  const taskfeed = useTaskFeed(tasks, sprints, updateTask, popup)
+
+
+  return {project, taskfeed, popup}
 }
 export default useProject;

@@ -1,6 +1,7 @@
 const { Project, Sprint, Task, TaskState} = require('../models/Tasker')
 const taskerRouter = require('express').Router()
 
+//------------- End points startin with projects -------------------
 //Get all projects
 taskerRouter.get('/projects', async (req, res) => {
   const projects = await Project.findAll()
@@ -63,6 +64,8 @@ taskerRouter.get('/projects/:id/tasks', async (req, res) => {
   }
   res.status(200).json(result)
 })
+
+//------------- End points startin with sprints -------------------
 //Get sprints
 taskerRouter.get('/sprints', async (req, res) => {
   const sprints = await Sprint.findAll()
@@ -101,7 +104,6 @@ taskerRouter.get('/sprints/:id', async (req, res) => {
   }
   res.status(200).json(sprint.dataValues)
 })
-
 //Get sprint tasks
 taskerRouter.get('/sprints/:id/tasks', async (req, res) => {
   let result = await Task.findAll({
@@ -116,6 +118,7 @@ taskerRouter.get('/sprints/:id/tasks', async (req, res) => {
 })
 
 
+//------------- End points startin with tasks -------------------
 //Get tasks
 taskerRouter.get('/tasks', async (req, res) => {
   const tasks = await Task.findAll()

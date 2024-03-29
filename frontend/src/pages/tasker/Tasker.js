@@ -11,6 +11,7 @@ const Tasker = () => {
   const initParams = useParams()
 
   useEffect(() => {
+    document.title = 'Tasker';
     setParams(initParams)
   },[initParams])
 

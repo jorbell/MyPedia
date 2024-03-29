@@ -24,29 +24,34 @@
     height: 25px;
     width: 50px;
     padding: 0px;
+    border: solid 1px;
+    background-color:#9f9f9f;
   }
   button.is-active {
-    background-color:#9f9f9f;
+    background-color: #fff;
   }
 }
 /* Menu bar with buttons, book name, chapter name etc */
 .editor-menu {
   color: white;
   background-color: #222;
-  padding: 10px;
-  width: calc(100vw - 370px);
+  //padding: 10px;
+  //width: calc(100vw - 350px);
+  display: flex;
+  flex-direction: column;
 }
 
 .editor-content{
   /*
-  background-color: black;
-  color: teal;
+  background-color: #060606;
+  color: #899;
   */
   background-color: white;
   padding: 20px;
   height: 100%;
   overflow:auto;
-  width: calc(100vw - 370px - 20px);
+  //width: 100%;
+  width: calc(100vw - 250px - 40px);
 }
 
 
@@ -123,9 +128,9 @@
     //table-layout: fixed;
     //width: 100%;
     //min-width: 100%;
-    max-width: 100%;
+    //max-width: 100%;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
 
     td,
     th {
@@ -138,6 +143,7 @@
 
       > * {
         margin-bottom: 0;
+        margin: 0;
       }
     }
 

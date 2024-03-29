@@ -1,8 +1,6 @@
 const TextButtons = ({ editor }) => {
   return (
-    <>
-    Text:
-    <br />
+    <div>
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={
@@ -71,7 +69,7 @@ const TextButtons = ({ editor }) => {
       >
         C/
       </button>
-    </>
+    </div>
   )
 }
 export default TextButtons

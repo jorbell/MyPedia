@@ -9,12 +9,16 @@ const useField = (type) => {
   const clear = () => {
     setValue('')
   }
+  const handleValueChange = (value) => {
+    setValue(value)
+  }
   return {
     field: {
       type,
       value,
-      onChange
+      onChange,
     },
+    changevalue: handleValueChange,
     clear
   }
 }

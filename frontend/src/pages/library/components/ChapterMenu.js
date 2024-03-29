@@ -23,6 +23,7 @@ const ChapterMenu = ({chapters, currentChapter, setCurrentChapter,addChapter}) =
   return (
     <div className={isHidden ? "chapter-menu" : "chapter-menu minimized"}>
       <div className={"chapter-buttons"}>
+        <h1 style={{color: 'white', margin: 0}}> Chapters: </h1>
         {chapters.map(chapter => 
           <ChapterButton
             key={chapter.name}

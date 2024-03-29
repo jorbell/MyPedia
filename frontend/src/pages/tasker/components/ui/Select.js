@@ -6,9 +6,9 @@ const style = {
   borderStyle:'none',
 
 }
-const Select = ({onChange, value, options}) => {
+const Select = ({onChange, value, options, extraStyle}) => {
   return (
-    <select style={style} value={value} onChange={onChange}>
+    <select style={{...style,...extraStyle} } value={value} onChange={onChange}>
       {options.map(o => 
           <option key={o.id} value={o.id}> {o.name} </option>
       )}
