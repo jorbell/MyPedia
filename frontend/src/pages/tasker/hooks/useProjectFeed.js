@@ -17,8 +17,7 @@ const useProjectFeed = () => {
     setProjects(initProjects)
   }, [initProjects, setProjects])
 
-  const createProject = (title, description) => {
-    let project = {title: title, description: description}
+  const createProject = (project) => {
     projectService
       .create(project)
       .then(result => {
