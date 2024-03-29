@@ -13,6 +13,9 @@ const update = (newTask) => {
   const request = axios.put(`${baseURL}/tasks/${newTask.id}`, newTask)
   return request.then(response => response.data)
 }
+const remove = (task) => {
+  const request = axios.delete(`${baseURL}/tasks/${task.id}`, task)
+  return request.then(response => response.data)
+}
 
-
-export default {create, update, getAll}
+export default {create, update, getAll, remove}

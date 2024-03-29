@@ -37,7 +37,21 @@ const useDatabase = () => {
       })
 
   }
-  return {createTask, updateTask,createSprint, updateSprint}
+  const deleteTask = (task, render) => {
+    taskService
+      .remove(task)
+      .then(result => {
+        render(task)
+      })
+  }
+  const deleteSprint = (sprint, render) => {
+    sprintService
+      .remove(sprint)
+      .then(result => {
+        render(sprint)
+      })
+  }
+  return {createTask, updateTask,createSprint, updateSprint, deleteTask, deleteSprint}
 
 }
 export default useDatabase;

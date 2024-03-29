@@ -94,6 +94,11 @@ taskerRouter.delete('/sprints/:id', async (req, res) => {
   await Sprint.destroy({
     where: { id: req.params.id }
   })
+  await Task.update({ sprintid: null }, {
+    where: {
+      sprintid: req.params.id
+    },
+  });
   res.status(204).end()
 })
 //Get sprint by id

@@ -15,9 +15,13 @@ const getAll = () => {
   return request.then(response => response.data)
 }
 
-const getTasks = (taskid) => {
-  const request = axios.get(`${baseURL}/sprints/${taskid}/tasks`)
+const getTasks = (sprintid) => {
+  const request = axios.get(`${baseURL}/sprints/${sprintid}/tasks`)
+  return request.then(response => response.data)
+}
+const remove = (sprint) => {
+  const request = axios.delete(`${baseURL}/sprints/${sprint.id}`, sprint)
   return request.then(response => response.data)
 }
 
-export default {create, update, getAll, getTasks}
+export default {create, update, getAll, getTasks, remove}

@@ -1,4 +1,4 @@
-const EditTask = ({title, description, onSubmit}) => {
+const EditTask = ({title, description, onSubmit, handleDelete}) => {
   return (
     <>
       <h1> Edit a task: </h1>
@@ -7,6 +7,7 @@ const EditTask = ({title, description, onSubmit}) => {
         <br />
         Description: <input {...description.field} />
         <br />
+        <button onClick={handleDelete}> Delete </button>
         <input type="submit" />
       </form>
     </>

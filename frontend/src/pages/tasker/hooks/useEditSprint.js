@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import useField from "./useField"
 
-const useEditSprint = (updateSprint) => {
+const useEditSprint = (updateSprint, deleteSprint) => {
   const title = useField('text')
   const description = useField('textarea')
   const [sprint, setSprint] = useState()
@@ -21,11 +21,16 @@ const useEditSprint = (updateSprint) => {
     title.clear()
     description.clear()
   }
+  const handleDelete = (event) => {
+    event.preventDefault()
+    deleteSprint(sprint)
+  }
   return {
     title,
     description,
     handleSprint,
-    onSubmit
+    onSubmit,
+    handleDelete
   }
 }
 export default useEditSprint

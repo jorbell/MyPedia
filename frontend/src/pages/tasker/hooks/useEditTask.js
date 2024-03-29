@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import useField from "./useField"
 
-const useEditTask = (updateTask) => {
+const useEditTask = (updateTask, deleteTask) => {
   const title = useField('text')
   const description = useField('textarea')
   const [task, setTask] = useState()
@@ -21,11 +21,16 @@ const useEditTask = (updateTask) => {
     title.clear()
     description.clear()
   }
+  const handleDelete = (event) => {
+    event.preventDefault()
+    deleteTask(task)
+  }
   return {
     title,
     description,
     handleTask,
-    onSubmit
+    onSubmit,
+    handleDelete
   }
 }
 export default useEditTask
