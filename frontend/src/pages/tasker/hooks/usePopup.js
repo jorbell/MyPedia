@@ -22,6 +22,12 @@ const usePopup = (sprintForm,taskForm, taskEditor, sprintEditor) => {
     setType("sprint")
     setIsShown(true)
   }
+  const openEditProject = (project) => {
+    //sprintEditor.handleSprint(sprint)
+    //setType("sprint")
+    console.log(project)
+    setIsShown(true)
+  }
   const close = () => {
     setIsShown(false)
   }
@@ -33,6 +39,7 @@ const usePopup = (sprintForm,taskForm, taskEditor, sprintEditor) => {
     openSprintForm, 
     openTaskForm, 
     openSprintEdit,
+    openEditProject,
     openTask, 
     taskForm, 
     sprintForm, 

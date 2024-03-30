@@ -1,29 +1,13 @@
 .sprint {
   display:flex;
   flex-direction:column;
-  color: white;
-  border-style:solid;
-  border-width:1px;
-  border-color:#333;
-  //background-color:#222;
   .header{
-    height:30px;
     display:flex;
-    flex-direction:row;
-    background-color:#285;
+    background-color:#234;
     align-items:center;
-    .info {
-      color: black;
-      width:100%;
-    }
-    .buttons{
-      justify-content:right;
-      display:flex;
-      width:100%;
-      button {
-        height: 20px;
-      }
-    }
+    border-style:solid;
+    border-width:1px;
+    border-color:black;
   }
 } 
 

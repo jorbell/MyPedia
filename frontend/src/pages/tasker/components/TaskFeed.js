@@ -4,9 +4,7 @@ import Sprint from './Sprint';
 
 const Header = ({filter}) => {
   const divStyle = {
-    display: "flex",
-    flexDirection:"row",
-    justifyContent:"right"
+    textAlign:"right",
   }
   return (
     <div style={divStyle}>
@@ -21,9 +19,9 @@ const Header = ({filter}) => {
 }
 const TaskFeed = ({sprints, updateTask, states, popup, filter}) => {
   const divStyle = {
-    display: "flex",
-    flexDirection:"column",
-    width: "80%"
+    backgroundColor:"#222",
+    width:"100%",
+    paddingBottom:20
   }
   return (
     <div style={divStyle}>

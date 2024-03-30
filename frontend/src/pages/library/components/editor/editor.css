@@ -62,7 +62,6 @@
 }
 .ProseMirror:focus {
   outline:none;
-  //text-align:justify;
 }
 .tiptap {
   margin: 1rem 0;
@@ -97,10 +96,9 @@
     font-family: 'JetBrainsMono', monospace;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
+    text-align:left;
 
     code {
-      //color: inherit;
-      //background: none;
       background-color: rgba(#616161, 0.1);
       color: #white;
       padding: 0;
@@ -125,10 +123,6 @@
   }
   table {
     border-collapse: collapse;
-    //table-layout: fixed;
-    //width: 100%;
-    //min-width: 100%;
-    //max-width: 100%;
     margin: 0;
     overflow: auto;
 

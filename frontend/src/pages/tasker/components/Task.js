@@ -5,6 +5,12 @@ import Select from './ui/Select'
 const Task = ({task, sprints,updateTask, states, popup}) => {
   const {stateSelect, sprintSelect} = useTask(task, sprints, updateTask, states)
 
+  const buttonStyle = {
+    backgroundColor:'#00000022',
+    height:'100%',
+    borderStyle:'none',
+    margin:5
+  }
   //Default color
   let style = { backgroundColor: '#ecc' }
   //Not started
@@ -21,6 +27,7 @@ const Task = ({task, sprints,updateTask, states, popup}) => {
       <Select {...stateSelect} />
       <Select {...sprintSelect} />
       <button 
+        style={buttonStyle}
         key={task.id}
         onClick={() => popup.openTask(task)}
         children={"Edit"}

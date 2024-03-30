@@ -6,16 +6,20 @@ import PopUp from "./ui/PopUp"
 const Sprint = ({sprint, sprints, updateTask,states, popup}) => {
   const [isHidden, setIsHidden] = useState(false)
 
+  const buttonStyle = {
+    backgroundColor:'#FFFFFF88',
+    borderStyle:'none',
+    margin:5,
+    marginRight:4,
+  }
   return (
     <div className="sprint">
       <div className="header">
-        <div className="info">
-          <h3 style={{margin:0}}> {sprint.title} </h3>
+        <div className="info" style={{width:'100%'}}>
+          <h3 style={{margin:0, marginLeft:5}}> {sprint.title} </h3>
         </div>
-        <div className="buttons">
-          <button onClick={() => popup.openSprintEdit(sprint)}> edit </button>
-          <button onClick={() => setIsHidden(!isHidden)}> {isHidden ? "Show" : "Hide"} </button>
-        </div>
+        <button style={buttonStyle} onClick={() => popup.openSprintEdit(sprint)}> Edit </button>
+        <button style={buttonStyle} onClick={() => setIsHidden(!isHidden)}> {isHidden ? "Show" : "Hide"} </button>
       </div>
       {!isHidden ?
         <div className="tasks">
