@@ -36,6 +36,11 @@ let DBPASSWORD_TEST  = process.env.DBPASSWORD_TEST
 let IDLE            = process.env.IDLE
 let IDLE_TEST       = process.env.IDLE_TEST
 
+//DOCKER
+let DBUSER_DOCKER   = process.env.DBUSER_DOCKER
+let DBPASSWORD_DOCKER = process.env.DBPASSWORD_DOCKER
+
+
 
 
 const library = {
@@ -86,6 +91,22 @@ const taskerTest = {
   dialect: DIALECT,
   host: HOST
 }
+const libraryDocker = {
+  database: LIBRARY,
+  user: DBUSER_DOCKER,
+  pwd: DBPASSWORD_DOCKER,
+  idle: IDLE,
+  dialect: DIALECT,
+  host: "database"
+}
+const taskerDocker = {
+  database: TASKER,
+  user: DBUSER_DOCKER,
+  pwd: DBPASSWORD_DOCKER,
+  idle: IDLE,
+  dialect: DIALECT,
+  host: "database"
+}
 
 module.exports = {
   PORT,
@@ -93,8 +114,10 @@ module.exports = {
   library,
   libraryDev,
   libraryTest,
+  libraryDocker,
   tasker,
   taskerDev,
-  taskerTest
+  taskerTest,
+  taskerDocker
 }
 

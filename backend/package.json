@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=TEST node --test",
+    "docker": "NODE_ENV=DOCKER node index.js",
     "dev": "NODE_ENV=DEV nodemon index.js",
     "start": "node index.js"
   },

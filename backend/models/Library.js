@@ -6,6 +6,8 @@ if(config.NODE_ENV === "DEV")
   db = require('../utils/config').libraryDev
 else if (config.NODE_ENV === "TEST")
   db = require('../utils/config').libraryTest
+else if (config.NODE_ENV === "DOCKER")
+  db = require('../utils/config').libraryDocker
 else
   db = require('../utils/config').library
   

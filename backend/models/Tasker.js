@@ -7,6 +7,8 @@ if(config.NODE_ENV === "DEV")
   db = require('../utils/config').taskerDev
 else if (config.NODE_ENV === "TEST")
   db = require('../utils/config').taskerTest
+else if (config.NODE_ENV === "DOCKER")
+  db = require('../utils/config').taskerDocker
 else
   db = require('../utils/config').tasker
 

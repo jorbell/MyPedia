@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3005:3000"
+      - "3006:3001"
+    links:
+      - "database:database"
+  database:
+    image: "mariadb:lts"
+    volumes:
+      - db:/var/lib/mysql
+      - ./backend/sql/mypedia.sql:/docker-entrypoint-initdb.d/mypedia.sql
+      - ./backend/sql/tasker.sql:/docker-entrypoint-initdb.d/tasker.sql
+      - ./backend/sql/users.sql:/docker-entrypoint-initdb.d/users.sql
+    env_file:
+      - docker.env
+volumes:
+  db:
