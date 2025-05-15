@@ -1,6 +1,6 @@
 import { Routes,Route} from 'react-router-dom'
-import Home from '../library/home/Home'
-import Library from '../library/Library'
+import Home from '../home/Home'
+import Library from '../Library'
 import useRoute from '../hooks/useRoute'
 
 const Router = () => {
