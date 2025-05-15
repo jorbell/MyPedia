@@ -1,0 +1,22 @@
+{
+  "books": [
+    { "id": "1", "name": "mio", "displayname": "mio",
+    "chapters": [
+      {
+        "name": "koiraa",
+        "bookid": 1,
+        "displayname": "koiraaa",
+        "content": "moimoimoi"
+      }
+    ]},
+    { "id": "2", "name": "mio", "displayname": "mio" }
+  ],
+  "chapters": [
+    {
+      "name": "koiraa",
+      "bookid": 1,
+      "displayname": "koiraaa",
+      "content": "moimoimoi"
+    }
+  ]
+}
