@@ -1,5 +1,5 @@
 import { Routes,Route} from 'react-router-dom'
-import Home from '../home/Home'
+import Home from '../components/Home'
 import Library from '../Library'
 import useRoute from '../hooks/useRoute'
 

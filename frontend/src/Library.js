@@ -23,6 +23,7 @@ const Library = () => {
     booksService
       .getAll()
       .then(initialBooks => { 
+        console.log(initialBooks);
         setBooks(initialBooks) 
         if (params.book !== undefined){
           let newBook = (initialBooks.find(book => book.name === params.book))
