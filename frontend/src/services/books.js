@@ -2,6 +2,7 @@ import axios from 'axios'
 axios.defaults.baseURL = 'https://api.jorbel.net/mypedia'
 axios.defaults.withCredentials = true
 
+const token = "b0e8a41b51bafbdaaed8a2b5246a699d"
 const getAll = () => {
   const request = axios.get('/books', {params: { 'token': token} })
   return request.then(response => response.data)

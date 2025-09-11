@@ -11,7 +11,7 @@ const NavigationBar = () => {
   return (
     <div style={style}>
     <PageLogo {...logo}/>
-    {links.map(link => <Link {...link} />)}
+    {links.map(link => <Link key={link} {...link} />)}
     </div>
   )
 }

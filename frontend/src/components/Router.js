@@ -1,6 +1,6 @@
 import { Routes,Route} from 'react-router-dom'
-import Home from '../components/Home'
-import Library from '../Library'
+import Home from '../pages/Home'
+import Library from '../pages/Library'
 import useRoute from '../hooks/useRoute'
 
 const Router = () => {
@@ -10,7 +10,7 @@ const Router = () => {
   const routes = [home, library, book]
   return (
     <Routes>
-      {routes.map(route => <Route {...route} /> )}
+      {routes.map(route => <Route key={route.key} {...route} /> )}
     </Routes>
   )
 

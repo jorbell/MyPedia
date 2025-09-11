@@ -1,21 +1,13 @@
-import TextEditor from './editor/TextEditor'
-import ChapterMenu from './ChapterMenu'
+import TextEditor from '../components/editor/TextEditor'
+import ChapterMenu from '../components/ChapterMenu'
+import '../styles/Book.css'
 
-const NoBook = () => {
-  return <h2>Select a book</h2>
-}
-const Book = ({
-  addChapter,
-  currentBook,
-  currentChapter,
-  setCurrentChapter,
-}) => {
+const Book = ({ addChapter, currentBook, currentChapter, setCurrentChapter, }) => {
   const handleEdit = (id, content) => {
     const newChapter = currentBook.chapters.find(chapter => chapter.id === id)
     newChapter.content=content
     setCurrentChapter(newChapter)
   }
-
   if(currentBook !== undefined){
     return (
       <div className="book-view">
@@ -32,6 +24,6 @@ const Book = ({
         />
       </div>
     )
-  }else return <NoBook />
+  }
 }
 export default Book

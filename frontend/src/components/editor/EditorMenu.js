@@ -28,32 +28,24 @@ const Header = ({chapterInput}) => {
 
 const EditorMenu = ({editor, chapter }) => {
   const [menuIsHidden, setMenuIsHidden] = useState(false)
-  const {handleSave, handleDeleteChapter} = useContext(bookContext);
+  const {handleSave} = useContext(bookContext);
   const chapterInput = useField('text', chapter.name )
 
   console.log(chapter)
   if(!editor) { return null }
   return (
     <div className="editor-menu">
-    {/*
-      <button onClick={() => handleDeleteChapter(chapter.id)}> 
-        Delete
-      </button>
-    */}
     <div style={{display:'flex', flexDirection: 'row', justifyContent:'center', width:'100%', backgroundColor:"#ffffff55"}}>
         <ButtonRow editor={editor} 
           isHidden={menuIsHidden} 
           setIsHidden={setMenuIsHidden}
         />
-        <button onClick={()=>handleSave({
+        <button type="button" onKeyDown={()=>{}} onClick={()=>handleSave({
           ...chapter, 
           name:chapterInput.field.value,
           content:editor.getHTML()
         })}> 
         Save
-        </button>
-        <button onClick={()=>handleSave({ })}> 
-          Edit
         </button>
       </div>
     <Header chapterInput={chapterInput}/>
