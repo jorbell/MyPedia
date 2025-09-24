@@ -1,5 +1,6 @@
 frontend/node_modules
 frontend/build
+frontend/package-lock.json
 backend/build
 backend/node_modules
 backend/database.sql

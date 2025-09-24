@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import useNavigationBar from '../hooks/useNavigationBar'
+import useLink from "../hooks/useLink"
 
 const style = {
   color: 'white',
@@ -14,15 +14,14 @@ const PageLogo = (link) => {
   )
 }
 const NavigationBar = () => {
-  const {links, logo} = useNavigationBar()
+  const logo = useLink("", "MyPedia");
   const style = {
     display: "flex",
     height: 48
   }
   return (
     <div style={style}>
-    <PageLogo {...logo}/>
-    {links.map(link => <Link key={link} {...link} />)}
+      <PageLogo {...logo}/>
     </div>
   )
 }
