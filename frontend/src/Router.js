@@ -1,6 +1,6 @@
 import { Routes,Route} from 'react-router-dom'
-import Library from '../pages/Library'
-import useRoute from '../hooks/useRoute'
+import Library from './pages/Library'
+import useRoute from './hooks/useRoute'
 
 const Router = () => {
   const library = useRoute("/", <Library />)
