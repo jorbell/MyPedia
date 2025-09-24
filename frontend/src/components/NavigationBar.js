@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom'
-import PageLogo from './PageLogo'
 import useNavigationBar from '../hooks/useNavigationBar'
 
+const style = {
+  color: 'white',
+  backgroundColor: '#141414',
+  textAlign: 'left',
+  padding: '11px 16px',
+  fontSize: 24,
+}
+const PageLogo = (link) => {
+  return (
+    <Link {...link} style={style} />
+  )
+}
 const NavigationBar = () => {
   const {links, logo} = useNavigationBar()
   const style = {
