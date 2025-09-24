@@ -1,6 +1,5 @@
 import TextEditor from '../components/editor/TextEditor'
 import ChapterMenu from '../components/ChapterMenu'
-import '../styles/Book.css'
 
 const Book = ({ addChapter, currentBook, currentChapter, setCurrentChapter, }) => {
   const handleEdit = (id, content) => {
@@ -8,9 +7,14 @@ const Book = ({ addChapter, currentBook, currentChapter, setCurrentChapter, }) =
     newChapter.content=content
     setCurrentChapter(newChapter)
   }
+  const style = {
+    display: 'flex',
+    height: 'calc(100vh - 48px - 48px)'
+  }
+
   if(currentBook !== undefined){
     return (
-      <div className="book-view">
+      <div className="book-view" style={style}>
         <ChapterMenu 
           chapters={currentBook.chapters}
           currentChapter={currentChapter}

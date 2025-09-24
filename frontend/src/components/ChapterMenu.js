@@ -5,19 +5,25 @@ import ChapterButton from './ChapterButton'
 const ChapterTools = ({addChapter, isHidden, setIsHidden}) => {
   return (
     <div className="chapter-tools">
-      <p className="addChapter" onKeyDown={() => {}}onClick={addChapter}> + </p>
+      <p className="addChapter" 
+        onClick={addChapter}> + 
+      </p>
       <br />
-      <p className="hideChapters" onKeyDown={()=>{}} onClick={() => setIsHidden(!isHidden)}> = </p>
+      <p className="hideChapters" 
+        onKeyDown={()=>{}} 
+        onClick={() => setIsHidden(!isHidden)}> 
+        = 
+      </p>
     </div>
   )
 }
 const ChapterMenu = ({chapters, currentChapter, setCurrentChapter,addChapter}) => {
+  const [isHidden, setIsHidden] = useState(true)
+
   chapters.sort((a,b) => {
     if (a.name < b.name)  return -1
     return 1
   })
-
-  const [isHidden, setIsHidden] = useState(true)
   return (
     <div className={isHidden ? "chapter-menu" : "chapter-menu minimized"}>
       <div className={"chapter-buttons"}>
