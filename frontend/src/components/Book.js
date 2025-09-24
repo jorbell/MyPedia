@@ -1,4 +1,4 @@
-import TextEditor from '../components/editor/TextEditor'
+import TextEditor from '../editor/TextEditor'
 import ChapterMenu from '../components/ChapterMenu'
 
 const Book = ({ addChapter, currentBook, currentChapter, setCurrentChapter, }) => {

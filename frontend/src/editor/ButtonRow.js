@@ -1,8 +1,8 @@
 import {useState} from "react"
 import TableButtons from "./TableButtons"
 import TextButtons from "./TextButtons"
-import useSelect from "../../hooks/useSelect"
-import Select from "../../components/Select"
+import useSelect from "../hooks/useSelect"
+import Select from "../components/Select"
 
 
 const ButtonRow = ({editor, isHidden, setIsHidden}) => {

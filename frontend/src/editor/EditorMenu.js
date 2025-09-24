@@ -1,7 +1,7 @@
 import ButtonRow from "./ButtonRow"
 import React, {useState, useContext} from 'react'
-import { bookContext } from '../../Context'
-import useField from "../../hooks/useField"
+import { bookContext } from '../Context'
+import useField from "../hooks/useField"
 
 
 const Header = ({chapterInput}) => {
