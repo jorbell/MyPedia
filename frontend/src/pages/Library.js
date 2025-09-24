@@ -28,7 +28,6 @@ const Library = () => {
     booksService
       .getAll()
       .then(initialBooks => { 
-        console.log(initialBooks);
         setBooks(initialBooks) 
         if (params.book !== undefined){
           const newBook = (initialBooks.find(book => book.name === params.book))
@@ -46,7 +45,7 @@ const Library = () => {
   const handleSave = (chapter) => {
     booksService
       .update(chapter.id, chapter.content , chapter.name)
-      .then( response => {
+      .then(() => {
           const newChapter ={id: chapter.id, name: chapter.name, content: chapter.content}
           const newBooks = books.map(book => {
             if(book.id === chapter.bookid){
@@ -60,7 +59,6 @@ const Library = () => {
             }
             return book;
           });
-        console.log(newBooks);
         setBooks(newBooks);
         const newBook = (newBooks.find(book => book.id === currentBook.id))
         setCurrentBook(newBook)
@@ -68,15 +66,13 @@ const Library = () => {
       })
   }
   const addChapter = () => {
-    console.log("Chapter added")
     const name = prompt("Chapter name:", "...")
     if(name){
       chapterService
         .create(currentBook.id, name)
         .then((response) => {
           const newChapter ={id: response.id, name: name}
-          let newBooks = {...books}
-          newBooks = newBooks.map(book => {
+          const newBooks = books.map(book => {
             if(book.id === currentBook.id){
               book.chapters.push(newChapter);
               return book;
