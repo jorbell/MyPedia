@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import useBookLink from '../hooks/useBookLink'
 const BookLink = ({ name }) => {
-  const link = useBookLink(`../library/${name}`, name)
+  const link = useBookLink(`../${name}`, name)
   return (
     <Link {...link} />
   )
