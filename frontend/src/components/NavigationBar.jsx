@@ -14,7 +14,7 @@ const PageLogo = (link) => {
   )
 }
 const NavigationBar = () => {
-  const logo = useLink("", "MyPedia");
+  const logo = useLink("", "Library");
   const style = {
     display: "flex",
     height: 48
