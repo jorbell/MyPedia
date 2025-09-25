@@ -8,7 +8,7 @@ import {EditorContent, useEditor} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import React, {useState} from 'react'
 import EditorMenu from './EditorMenu'
-import './editor.css'
+import '../styles/Editor.css'
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
