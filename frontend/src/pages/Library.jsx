@@ -1,16 +1,13 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import Book from '../components/Book'
 import BookSelector from '../components/BookSelector'
-import booksService from '../services/books'
-import chapterService from '../services/chapter'
+import booksService from '../api/booksApi'
+import chapterService from '../api/chaptersApi'
 import { bookContext } from '../Context'
 
 const LibraryHome = () => {
-  return (
-    <div className='library-home'>
-    </div>
-  )
+  return <div className='library-home'> </div>
 }
 const Library = () => {
   const initChapter = { "name": "", "content": "" }
