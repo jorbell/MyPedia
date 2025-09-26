@@ -2,115 +2,82 @@ import {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import Book from '../library/Book'
 import BookSelector from '../library/BookSelector'
-import booksService from '../api/booksApi'
-import chapterService from '../api/chaptersApi'
-import { bookContext } from '../Context'
 
-const LibraryHome = () => {
-  return ( <div className='library-home'> </div>
-  )
-}
+import {useBooks, useAddBook, useAddChapter, useUpdateChapter} from '../hooks/useApi'
+
+const LibraryHome = () => { return ( <div className='library-home'> </div>) }
+
 const Library = () => {
-  const initChapter = { "name": "", "content": "" }
-  const initBook = { "name": "init", "chapters":[initChapter] }
 
-  //State hooks
-  const [currentBook, setCurrentBook] = useState(undefined)
-  const [currentChapter, setCurrentChapter] = useState(initChapter);
-  const [books, setBooks] = useState([initBook])
+  //Getting the books from server.
+  const {data: books = [], isLoading } = useBooks();
 
-  const params = useParams()
-  //Initialize books
+  //Setting the current book by the name in URL.
+  const {book: bookName } = useParams();
+  const currentBook = books.find(b => b.name === bookName);
+
+  //Setting the current chapter
+  const [currentChapter, setCurrentChapter] = useState(null);
+
   useEffect(() => {
-    document.title = "Library"
-    booksService
-      .getAll()
-      .then(initialBooks => { 
-        setBooks(initialBooks) 
-        if (params.book !== undefined){
-          const newBook = (initialBooks.find(book => book.name === params.book))
-          newBook.chapters.sort((a,b) => {
-            if (a.name < b.name)  return -1
-            return 1;
-          })
-          setCurrentBook(newBook)
-          setCurrentChapter(newBook.chapters[0])
-        }
-      })
-  }, [params])
+    if (currentBook) {
+      document.title = currentBook.name;
+      if (currentBook.chapters && currentBook.chapters.length > 0) {
+        const sortedChapters = 
+          [...currentBook.chapters]
+          .sort((a, b) => a.name.localeCompare(b.name));
 
-  //Event handlers
+        setCurrentChapter(sortedChapters[0]);
+      } else {
+        setCurrentChapter(null);
+      }
+    } else {
+      document.title = "Library";
+    }
+  }, [currentBook]);
+
+  const addBookMutation = useAddBook();
+  const addChapterMutation = useAddChapter();
+  const updateChapterMutation = useUpdateChapter();
+
+  const handleAddBook = () => {
+    const name = prompt("Book name:", "...");
+    if (name) {
+      addBookMutation.mutate(name);
+    }
+  };
+
+  const handleAddChapter = () => {
+    const name = prompt("Chapter name:", "...");
+    if (name && currentBook) {
+      addChapterMutation.mutate({ bookId: currentBook.id, name });
+    }
+  };
+
   const handleSave = (chapter) => {
-    booksService
-      .update(chapter.id, chapter.content , chapter.name)
-      .then(() => {
-          const newChapter ={id: chapter.id, name: chapter.name, content: chapter.content}
-          const newBooks = books.map(book => {
-            if(book.id === chapter.bookid){
-              book.chapters.map(c => {
-                  if(c.id === chapter.id){
-                    return newChapter;
-                  }
-                  return c;
-                }
-              )
-            }
-            return book;
-          });
-        setBooks(newBooks);
-        const newBook = (newBooks.find(book => book.id === currentBook.id))
-        setCurrentBook(newBook)
-        setCurrentChapter(newBook.chapters[0])
-      })
+    updateChapterMutation.mutate(chapter);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
-  const addChapter = () => {
-    const name = prompt("Chapter name:", "...")
-    if(name){
-      chapterService
-        .create(currentBook.id, name)
-        .then((response) => {
-          const newChapter ={id: response.id, name: name}
-          const newBooks = books.map(book => {
-            if(book.id === currentBook.id){
-              book.chapters.push(newChapter);
-              return book;
-            }
-            return book;
-          });
-          setBooks(newBooks)
-      })
-    }
-  }
-  const addBook = () => {
-    const name = prompt("Bookname:", "...")
-    if(name){
-      booksService
-        .create(name)
-        .then((response) => {
-          const newBooks = books.map(book => { return book; });
-          const newBook = {id: response.id, name: name, chapters:[]};
-          newBooks.push(newBook);
-          setBooks(newBooks)
-        })
-    }
-  }
+
   return (
     <div className="LibraryApp">
-      <BookSelector books={books} addBook={addBook} />
-      {params.book === undefined ?
-      <LibraryHome /> :
-      <bookContext.Provider value={{ handleSave}}>
+      <BookSelector books={books} addBook={handleAddBook} />
+      {currentBook ? (
         <Book
           currentBook={currentBook}
           currentChapter={currentChapter}
-          addChapter={addChapter}
+          addChapter={handleAddChapter}
           setCurrentChapter={setCurrentChapter}
-          handleSave={handleSave}
-        /> 
-      </bookContext.Provider >
-      }
+          handleSave={handleSave} // Pass handleSave as a prop
+        />
+      ) : (
+        <LibraryHome />
+      )}
     </div>
-  )
+  );
+};
 
-}
-export default Library
+export default Library;

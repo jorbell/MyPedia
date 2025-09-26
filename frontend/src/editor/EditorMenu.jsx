@@ -1,6 +1,5 @@
 import ButtonRow from "./ButtonRow"
-import React, {useState, useContext} from 'react'
-import { bookContext } from '../Context'
+import {useState} from 'react'
 import useField from "../hooks/useField"
 
 
@@ -26,9 +25,8 @@ const Header = ({chapterInput}) => {
     )
 }
 
-const EditorMenu = ({editor, chapter }) => {
+const EditorMenu = ({editor, chapter,handleSave }) => {
   const [menuIsHidden, setMenuIsHidden] = useState(false)
-  const {handleSave} = useContext(bookContext);
   const chapterInput = useField('text', chapter.name )
 
   console.log(chapter)

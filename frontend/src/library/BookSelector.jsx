@@ -5,8 +5,6 @@ import '../styles/BookSelector.css'
 
 const BookSelector = ({books,addBook}) => {
 
-  console.log("--------------book---------------");
-  console.log(books);
   if(books)
   return (
     <div className="book-selector">

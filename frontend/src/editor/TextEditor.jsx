@@ -29,7 +29,7 @@ const CustomTableCell = TableCell.extend({
     }
   },
 })
-const TextEditor = ({chapter}) => {
+const TextEditor = ({chapter, handleSave}) => {
   const extensions = [
     Color.configure(),
     TextStyle.configure(),
@@ -52,8 +52,16 @@ const TextEditor = ({chapter}) => {
   })
   return (
     <div className="editor">
-      <EditorMenu editor={editor} chapter={chapter} />
-      <EditorContent className="editor-content" editor={editor} spellCheck="false" />
+      <EditorMenu 
+        editor={editor} 
+        chapter={chapter} 
+        handleSave={handleSave} 
+      />
+      <EditorContent 
+        className="editor-content" 
+        editor={editor} 
+        spellCheck="false" 
+      />
     </div>
   )
 }
