@@ -6,14 +6,9 @@ const getAll = () => {
   const request = axios.get('/books')
   return request.then(response => response.data)
 }
-const update = (id, newContent, newName) => {
-  const c = {id:id, content: newContent, name: newName}
-  const request = axios.put('/chapters', c)
-  return request.then(response => response.data)
-}
 const create = (newName) => {
   const c = {name: newName}
   const request = axios.post('/books', c)
   return request.then(response => response.data)
 }
-export default {getAll, update, create}
+export default {getAll, create}

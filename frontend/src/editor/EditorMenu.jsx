@@ -29,7 +29,6 @@ const EditorMenu = ({editor, chapter,handleSave }) => {
   const [menuIsHidden, setMenuIsHidden] = useState(false)
   const chapterInput = useField('text', chapter.name )
 
-  console.log(chapter)
   if(!editor) { return null }
   return (
     <div className="editor-menu">

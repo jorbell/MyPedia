@@ -1,14 +1,11 @@
 import { Routes,Route} from 'react-router-dom'
 import Library from './library/Library'
-import useRoute from './hooks/useRoute'
 
 const Router = () => {
-  const library = useRoute("/", <Library />)
-  const book = useRoute("/:book", <Library />)
-  const routes = [library, book]
   return (
     <Routes>
-      {routes.map(route => <Route key={route.key} {...route} /> )}
+      <Route key="/" path="/" element={<Library />}/>
+      <Route key="/:book" path="/:book" element={<Library />}/>
     </Routes>
   )
 

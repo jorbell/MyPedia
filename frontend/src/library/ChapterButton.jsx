@@ -1,6 +1,14 @@
-import useChapterButton from "../hooks/useChapterButton"
+import '../styles/ChapterButton.css'
+
 const ChapterButton = ({isActive, name, onClick}) => {
-  const btn = useChapterButton(name, onClick, isActive)
-  return(<button {...btn} />)
+  return(
+    <button 
+      onClick={onClick}
+      className={`chapter-button ${isActive} ? 'active' : ''}`}
+    >
+    
+    {name}
+    </button>
+  )
 }
 export default ChapterButton

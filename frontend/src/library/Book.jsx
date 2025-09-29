@@ -1,19 +1,16 @@
 import TextEditor from '../editor/TextEditor';
 import ChapterMenu from './ChapterMenu';
+import '../styles/BookSelector.css'
 
 // Accept handleSave in props
 const Book = ({ addChapter, currentBook, currentChapter, setCurrentChapter, handleSave }) => {
-  const style = {
-    display: 'flex',
-    height: 'calc(100vh - 48px - 48px)'
-  };
 
   if (!currentBook || !currentChapter) {
     return null; // Or a loading/empty state
   }
 
   return (
-    <div className="book-view" style={style}>
+    <div className="book-container">
       <ChapterMenu 
         chapters={currentBook.chapters}
         currentChapter={currentChapter}

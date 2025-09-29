@@ -24,8 +24,7 @@ const Library = () => {
       document.title = currentBook.name;
       if (currentBook.chapters && currentBook.chapters.length > 0) {
         const sortedChapters = 
-          [...currentBook.chapters]
-          .sort((a, b) => a.name.localeCompare(b.name));
+          [...currentBook.chapters] .sort((a, b) => a.name.localeCompare(b.name));
 
         setCurrentChapter(sortedChapters[0]);
       } else {
@@ -40,18 +39,24 @@ const Library = () => {
   const addChapterMutation = useAddChapter();
   const updateChapterMutation = useUpdateChapter();
 
-  const handleAddBook = () => {
+  const handleAddBook = (name) => {
+    /*
     const name = prompt("Book name:", "...");
     if (name) {
       addBookMutation.mutate(name);
     }
+    */
+    addBookMutation.mutate(name);
   };
 
-  const handleAddChapter = () => {
+  const handleAddChapter = (name) => {
+    addChapterMutation.mutate({bookId: currentBook.id, name});
+    /*
     const name = prompt("Chapter name:", "...");
     if (name && currentBook) {
       addChapterMutation.mutate({ bookId: currentBook.id, name });
     }
+    */
   };
 
   const handleSave = (chapter) => {

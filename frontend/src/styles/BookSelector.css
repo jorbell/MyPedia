@@ -1,3 +1,7 @@
+.book-container {
+  display:flex;
+  height: calc(100vh - 48px - 48px)
+}
 .book-selector {
   height: 48px;
   overflow:hidden;

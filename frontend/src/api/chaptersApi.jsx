@@ -13,7 +13,7 @@ const create = (id, name) => {
 }
 const remove = (id) => {
   const c = {id: id}
-  const request = axios.put('/chapter/delete/${id}', c)
+  const request = axios.put(`/chapter/delete/${id}`, c)
   return request.then(response => response.data)
 }
 export default { update, create, remove }
