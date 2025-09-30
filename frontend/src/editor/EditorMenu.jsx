@@ -15,14 +15,10 @@ const Header = ({chapterInput}) => {
     padding: 0
   }
   return (
-        <div>
-          <div style={{width:'100%', textAlign:'center'}}>
-            <input style={style} {...chapterInput.field}/> 
-          </div>
-          <div>
-        </div>
-      </div>
-    )
+    <div style={{width:'100%', textAlign:'center'}}>
+      <input style={style} {...chapterInput.field}/> 
+    </div>
+  )
 }
 
 const EditorMenu = ({editor, chapter,handleSave }) => {
@@ -37,7 +33,7 @@ const EditorMenu = ({editor, chapter,handleSave }) => {
           isHidden={menuIsHidden} 
           setIsHidden={setMenuIsHidden}
         />
-        <button type="button" onKeyDown={()=>{}} onClick={()=>handleSave({
+        <button type="button" onClick={()=>handleSave({
           ...chapter, 
           name:chapterInput.field.value,
           content:editor.getHTML()

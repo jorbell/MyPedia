@@ -1,13 +1,26 @@
 import TextEditor from '../editor/TextEditor';
 import ChapterMenu from './ChapterMenu';
+import { useState} from 'react'
+import {useAddChapter} from '../hooks/useApi'
+import {useUpdateChapter} from '../hooks/useApi'
 import '../styles/BookSelector.css'
 
 // Accept handleSave in props
-const Book = ({ addChapter, currentBook, currentChapter, setCurrentChapter, handleSave }) => {
+const Book = ({currentBook}) => {
 
-  if (!currentBook || !currentChapter) {
+  if (!currentBook ) {
     return null; // Or a loading/empty state
   }
+
+  const [currentChapter, setCurrentChapter] = useState(currentBook.chapters[0]);
+  const addChapterMutation = useAddChapter();
+
+  const updateChapterMutation = useUpdateChapter();
+  const handleSave = (chapter) => { updateChapterMutation.mutate(chapter); };
+
+  const handleAddChapter = (name) => {
+    addChapterMutation.mutate({bookId: currentBook.id, name});
+  };
 
   return (
     <div className="book-container">
@@ -15,17 +28,15 @@ const Book = ({ addChapter, currentBook, currentChapter, setCurrentChapter, hand
         chapters={currentBook.chapters}
         currentChapter={currentChapter}
         setCurrentChapter={setCurrentChapter}
-        addChapter={addChapter}
+        addChapter={handleAddChapter}
       />
-      {currentChapter && (
-        <TextEditor 
-          key={currentChapter.id} // Use a stable key like id
-          chapter={currentChapter}
-          handleSave={handleSave} // Pass it down to the editor
-        />
-      )}
+      <TextEditor 
+        key={currentChapter.id} 
+        chapter={currentChapter}
+        handleSave={handleSave} 
+      />
     </div>
-  );
+  )
 };
 
 export default Book;

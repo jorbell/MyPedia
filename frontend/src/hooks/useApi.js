@@ -36,7 +36,7 @@ export const useAddChapter = () => {
 export const useUpdateChapter = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, content, name }) => booksService.update(id, content, name),
+    mutationFn: ({ id, content, name }) => chapterService.update(id, content, name),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['books'] });
     },

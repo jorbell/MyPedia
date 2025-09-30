@@ -1,6 +1,5 @@
 import {useState} from 'react'
 import '../styles/ChapterMenu.css'
-import ChapterButton from './ChapterButton'
 
 const ChapterTools = ({addChapter, isHidden, setIsHidden}) => {
   return (
@@ -29,12 +28,18 @@ const ChapterMenu = ({chapters, currentChapter, setCurrentChapter,addChapter}) =
       <div className={"chapter-buttons"}>
         <h1 className="chapters-title"> Chapters: </h1>
         {chapters.map(chapter => 
-          <ChapterButton
+          <button
             key={chapter.name}
             name={chapter.name}
-            isActive={currentChapter.id === chapter.id} 
+            className={
+              `chapter-button ${currentChapter.id === chapter.id 
+                  ? 'active' 
+                  : ''}`
+            }
             onClick={() => setCurrentChapter(chapter)}
-          />
+          >
+          {chapter.name}
+          </button>
         )}
       </div>
       <ChapterTools 

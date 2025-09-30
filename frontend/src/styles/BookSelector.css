@@ -29,3 +29,16 @@
 
   }
 }
+.book-link {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.book-link:hover {
+  background-color: gray;
+}
+
+.book-link.active {
+  background-color: #666;
+}

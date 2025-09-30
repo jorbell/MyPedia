@@ -1,19 +1,27 @@
 import {mdiPlus} from '@mdi/js'
 import Icon from '@mdi/react'
-import BookLink from './BookLink'
 import '../styles/BookSelector.css'
-
-const BookSelector = ({books,addBook}) => {
-
+import { Link } from 'react-router-dom';
+import {useAddBook} from '../hooks/useApi'
+const BookSelector = ({currentBook, books}) => {
+  const addBookMutation = useAddBook();
+  const handleAddBook = (name) => { addBookMutation.mutate(name); };
   if(books)
   return (
     <div className="book-selector">
       <div className="books">
         {books.map(book => 
-          <BookLink key ={`${book.name}.${book.id}`} name={book.name} />
+          <Link
+            key={book.id}
+            to={`../${book.name}`}
+            className={`book-link ${book === currentBook ? 'active' : ''}`}
+          >
+            {book.name}
+          </Link>
+
         )}
       </div>
-      <div className="addBook" onClick={addBook}>
+      <div className="addBook" onClick={handleAddBook}>
         <p>Add a book</p>
         <Icon path={mdiPlus} color="white" size={1} />
       </div>
