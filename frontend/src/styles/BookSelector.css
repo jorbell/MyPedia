@@ -4,12 +4,14 @@
 }
 .book-selector {
   height: 48px;
-  overflow:hidden;
   white-space:nowrap;
   background-color: #343434;
   display:flex;
 
   .books {
+    overflow:scroll;
+    overflow-y:hidden;
+    scrollbar-width: none;
     height: var(--nav-height);
     display:flex;
     width:100%;

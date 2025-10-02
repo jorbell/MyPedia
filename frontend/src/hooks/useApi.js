@@ -11,12 +11,33 @@ export const useBooks = () => {
 };
 
 // Mutation to add a new book
-export const useAddBook = () => {
+export const useAddBook = (setNotification) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: booksService.create, // expects (name)
+    mutationFn: (name) => {
+      const notification = {
+        "isVisible": true,
+        "title": `Creating a book: ${name}.`,
+        "text": `Waiting for response from the server..`
+      }
+      setNotification(notification);
+      return(
+        booksService.create(name) // expects (name)
+      )
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['books'] });
+      const notification = {
+        "isVisible": false,
+        "title": `Finished!`,
+        "text": `Book created succesfully!`
+      }
+      setTimeout(function(){
+        setNotification(notification);
+      }, 1000);
+
+      return(
+        queryClient.invalidateQueries({ queryKey: ['books'] })
+      )
     },
   });
 };

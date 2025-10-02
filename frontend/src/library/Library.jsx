@@ -20,14 +20,15 @@ const Library = () => {
   if (isLoading) { return <div>Loading...</div>; }
   return (
     <div className="LibraryApp">
-      <Notification 
-        notification={notification} />
       <BookSelector 
         currentBook={currentBook} 
-        books={books} />
+        books={books}
+        setNotification={setNotification} />
       <Book 
         currentBook={currentBook} 
         setNotification={setNotification} />
+      <Notification 
+        notification={notification} />
     </div>
   );
 };
