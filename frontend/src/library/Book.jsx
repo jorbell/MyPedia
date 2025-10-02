@@ -1,11 +1,11 @@
 import TextEditor from '../editor/TextEditor';
 import ChapterMenu from './ChapterMenu';
-import { useState} from 'react'
+import { useEffect, useState} from 'react'
 import {useAddChapter} from '../hooks/useApi'
 import {useUpdateChapter} from '../hooks/useApi'
+import Notification from '../components/Notification'
 import '../styles/BookSelector.css'
 
-// Accept handleSave in props
 const Book = ({currentBook}) => {
 
   if (!currentBook ) {
@@ -13,10 +13,13 @@ const Book = ({currentBook}) => {
   }
 
   const [currentChapter, setCurrentChapter] = useState(currentBook.chapters[0]);
-  const addChapterMutation = useAddChapter();
+  const [notification, setNotification] = useState(false);
+  const addChapterMutation = useAddChapter(setNotification);
 
-  const updateChapterMutation = useUpdateChapter();
-  const handleSave = (chapter) => { updateChapterMutation.mutate(chapter); };
+  const updateChapterMutation = useUpdateChapter(setNotification);
+  const handleSave = (chapter) => { 
+    updateChapterMutation.mutate(chapter); 
+  };
 
   const handleAddChapter = (name) => {
     addChapterMutation.mutate({bookId: currentBook.id, name});
@@ -24,6 +27,7 @@ const Book = ({currentBook}) => {
 
   return (
     <div className="book-container">
+      <Notification  notification={notification} />
       <ChapterMenu 
         chapters={currentBook.chapters}
         currentChapter={currentChapter}

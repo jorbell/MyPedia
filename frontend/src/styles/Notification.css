@@ -1,0 +1,33 @@
+@keyframes fadeOut {
+  0%   { opacity:1; }
+  100% { opacity:0; }
+}
+.notification {
+  background-color: gray;
+  position: fixed;
+  width: 300px;
+  height: 50px;
+  bottom:  10px;
+  right:  10px;
+  border: solid 4px;
+  border-radius: 10px;
+
+}
+.notification.notvisible {
+  opacity: 0;
+  animation: fadeOut 5s ease;
+}
+.notification.visible{
+  opacity: 1;
+}
+.notification-header {
+  margin: 0px;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 24;
+
+}
+.notification-text {
+  margin-left: 10px;
+  margin-top: 0px;
+}

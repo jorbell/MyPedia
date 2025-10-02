@@ -33,12 +33,32 @@ export const useAddChapter = () => {
 };
 
 // Mutation to update a chapter
-export const useUpdateChapter = () => {
+export const useUpdateChapter = (setNotification) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, content, name }) => chapterService.update(id, content, name),
+    mutationFn: ({ id, content, name }) => {
+      const notification = {
+        "isVisible": true,
+        "title": `Updating ${name}...`,
+        "text": `Updating chapter: ${name}`
+      }
+      setNotification(notification);
+      return(
+        chapterService.update(id, content, name)
+      )
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['books'] });
+      const notification = {
+        "isVisible": false,
+        "title": `Finished`,
+        "text": `Chapter updated succesfully!`
+      }
+      setTimeout(function(){
+        setNotification(notification);
+      }, 1000);
+      return(
+        queryClient.invalidateQueries({ queryKey: ['books'] })
+      )
     },
   });
 };

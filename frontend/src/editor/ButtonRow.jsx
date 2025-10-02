@@ -24,8 +24,7 @@ const ButtonRow = ({editor, isHidden, setIsHidden}) => {
       <Select {...toolSelect} />
         {tool === "text" ?
           <TextButtons editor={editor} /> 
-          :
-          <TableButtons editor={editor} />
+          : <TableButtons editor={editor} />
           }
     </div>
   )
