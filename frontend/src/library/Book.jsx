@@ -1,22 +1,27 @@
 import TextEditor from '../editor/TextEditor';
 import ChapterMenu from './ChapterMenu';
 import { useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom'
 import {useAddChapter} from '../hooks/useApi'
 import {useUpdateChapter} from '../hooks/useApi'
-import Notification from '../components/Notification'
 import '../styles/BookSelector.css'
 
-const Book = ({currentBook}) => {
+const Book = ({currentBook, setNotification}) => {
 
   if (!currentBook ) {
     return null; // Or a loading/empty state
   }
 
+  //useState for current chapter
   const [currentChapter, setCurrentChapter] = useState(currentBook.chapters[0]);
-  const [notification, setNotification] = useState(false);
-  const addChapterMutation = useAddChapter(setNotification);
 
+  //Mutations
+  const addChapterMutation = useAddChapter(setNotification);
   const updateChapterMutation = useUpdateChapter(setNotification);
+
+  //Get the bookname from params
+  const {book: bookName } = useParams();
+
   const handleSave = (chapter) => { 
     updateChapterMutation.mutate(chapter); 
   };
@@ -25,9 +30,17 @@ const Book = ({currentBook}) => {
     addChapterMutation.mutate({bookId: currentBook.id, name});
   };
 
+  useEffect(() => {
+    setCurrentChapter(currentBook.chapters[0]);
+    document.title = "Library";
+    if (bookName) {
+      document.title = bookName;
+    } 
+    console.log("useEffect");
+  }, [bookName]);
+
   return (
     <div className="book-container">
-      <Notification  notification={notification} />
       <ChapterMenu 
         chapters={currentBook.chapters}
         currentChapter={currentChapter}
