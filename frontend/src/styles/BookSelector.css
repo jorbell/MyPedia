@@ -1,6 +1,14 @@
 .book-container {
   display:flex;
-  height: calc(100vh - 48px - 48px)
+  height: calc(100vh - 48px - 48px - 10px);
+  border-top: solid 10px;
+  border-color: black;
+}
+.book-selector-title {
+  margin: 0px;
+  color: white;
+  font-size: 30px;
+  padding-right: 10px;
 }
 .book-selector {
   height: 48px;
@@ -8,37 +16,38 @@
   background-color: #343434;
   display:flex;
 
-  .books {
-    overflow:scroll;
-    overflow-y:hidden;
-    scrollbar-width: none;
-    height: var(--nav-height);
-    display:flex;
-    width:100%;
-  }
   /* Button for adding book */
+}
+.books {
+  overflow:scroll;
+  overflow-y:hidden;
+  scrollbar-width: none;
+  display:flex;
+  width:100%;
+  padding: 10px;
 }
 .addBook {
   display:flex;
   align-items:center;
-  justify-content:center;
   color: white;
-  padding:6px;
-  margin:3px;
-  font-weight:bold;
+  padding: 5px;
   border-style:solid;
   border-width:2px;
   border-color:gray;
+  font-weight:bold;
 
 }
 .book-link {
+  margin-right: 10px;
   border: solid 2px;
-  color: white;
+  height: 30px;
   border-radius: 20px;
-  padding: 14px 16px;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
   justify-content: center;
+  align-content: center;
   text-decoration: none;
-  font-size:10;
 }
 
 .book-link:hover {

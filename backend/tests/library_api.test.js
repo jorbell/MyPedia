@@ -40,14 +40,6 @@ describe('Library tests' , () => {
         .expect('Content-Type', /application\/json/)
     })
   })
-  /*
-  describe('Tests for sprints' , () => {
-    
-  })
-  describe('Tests for tasks' , () => {
-    
-  })
-  */
 })
 after(async () => {
   app.close(done)

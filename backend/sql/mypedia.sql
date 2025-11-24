@@ -64,3 +64,6 @@ CREATE TABLE `chapters` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-04-01 18:41:34
+CREATE USER 'mypedia'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON MyPedia.* TO 'mypedia'@'localhost';
+FLUSH PRIVILEGES;

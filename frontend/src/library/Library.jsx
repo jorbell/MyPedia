@@ -19,7 +19,7 @@ const Library = () => {
   //If loading, return just loading text.
   if (isLoading) { return <div>Loading...</div>; }
   return (
-    <div className="LibraryApp">
+    <div>
       <BookSelector 
         currentBook={currentBook} 
         books={books}

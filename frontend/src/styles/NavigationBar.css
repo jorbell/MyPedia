@@ -1,13 +1,14 @@
 .navigation-bar {
   display: flex;
   height: 48px;
+  background-color: black;
 }
 .page-logo {
   color: white;
   background-color: #141414;
   text-align: left;
   padding: 11px 16px;
-  font-size: 24;
+  font-size: 24px;
 }
 .page-logo:hover{
   background-color: #666666;

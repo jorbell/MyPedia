@@ -39,19 +39,22 @@ const BookSelector = ({currentBook, books, setNotification}) => {
     return (
       <div className="book-selector">
         <div className="books">
+          <h1 className="book-selector-title">Books: </h1> 
           {books.map(book => 
             <BookLink key={book.id} book={book} currentBook={currentBook} />
           )}
         </div>
-      {
-        adding ?
+      { adding ?
         <div className="addBook" onClick={handleAddBook}>
           <p>Add a book</p>
           <Icon path={mdiPlus} color="white" size={1} />
-        </div> :
-        <div className="add-book-form">
-           <AddBookForm addBook={addBook}/> 
-        </div>
+        </div> 
+        : 
+           <AddBookForm 
+            addBook={addBook}
+            setAdding={setAdding}
+            adding={adding}
+            /> 
       }
     </div>
   )

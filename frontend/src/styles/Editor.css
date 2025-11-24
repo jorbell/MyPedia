@@ -1,20 +1,24 @@
 
 /* Tip top Configuration */
 /* Tip top ProseMirror div (Area with the text) */
+
 /* Container for menu and content*/
 .editor {
   background-color: gray;
-  width: 100%;
   float: center;
   display: flex;
   flex-direction: column;
+  border-left: solid 10px;
+  border-color: black;
+  width: 100%;
+  overflow: hidden;
+
   pre {
     color:white;
     background-color:#3f3f3f;
     padding:8px;
     margin-left:5%;
     border-radius: 8px;
-    width: 85%;
   }
 
   ul, ol {
@@ -35,30 +39,24 @@
 .editor-menu {
   color: white;
   background-color: #222;
-  //padding: 10px;
-  //width: calc(100vw - 350px);
   display: flex;
   flex-direction: column;
 }
 
 .editor-content{
-  /*
-  background-color: #060606;
-  color: #899;
-  */
   background-color: white;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 100%;
   overflow:auto;
-  //width: 100%;
-  width: calc(100vw - 250px - 40px);
 }
 
 
 .ProseMirror {
   text-align:justify;
-  height:90%;
+  height:100%;
   width: 100%;
+  padding-bottom:200px;
 }
 .ProseMirror:focus {
   outline:none;
@@ -75,11 +73,7 @@
     padding: 0 1rem;
   }
 
-  h1,
-  h2,
-  h3, h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;
   }
 
@@ -126,8 +120,7 @@
     margin: 0;
     overflow: auto;
 
-    td,
-    th {
+    td, th {
       min-width: 1em;
       border: 2px solid #ced4da;
       padding: 3px 5px;

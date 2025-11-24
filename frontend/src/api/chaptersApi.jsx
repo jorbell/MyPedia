@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'https://api.jorbel.net/mypedia'
+axios.defaults.baseURL = '/api/library'
 axios.defaults.withCredentials = true
 const update = (id, newContent, newName) => {
   const c = {id:id, content: newContent, name: newName}

@@ -1,0 +1,23 @@
+.add-book-form {
+  padding:6px;
+  border-style:solid;
+  border-width:2px;
+  border-color:gray;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.book-form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.cancel {
+  background-color: red;
+  margin-left: 5px;
+  height: 25px;
+}
+.submit {
+  background-color: darkgreen;
+  margin-left: 5px;
+  height: 30px;
+}

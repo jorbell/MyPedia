@@ -16,7 +16,7 @@ export const useAddBook = (setNotification) => {
   return useMutation({
     mutationFn: (name) => {
       const notification = {
-        "isVisible": true,
+        "isFading": false,
         "title": `Creating a book: ${name}.`,
         "text": `Waiting for response from the server..`
       }
@@ -27,7 +27,7 @@ export const useAddBook = (setNotification) => {
     },
     onSuccess: () => {
       const notification = {
-        "isVisible": false,
+        "isFading": true,
         "title": `Finished!`,
         "text": `Book created succesfully!`
       }
@@ -59,7 +59,8 @@ export const useUpdateChapter = (setNotification) => {
   return useMutation({
     mutationFn: ({ id, content, name }) => {
       const notification = {
-        "isVisible": true,
+        "isHidden": false,
+        "isFading": true,
         "title": `Updating ${name}...`,
         "text": `Updating chapter: ${name}`
       }
@@ -70,13 +71,17 @@ export const useUpdateChapter = (setNotification) => {
     },
     onSuccess: () => {
       const notification = {
-        "isVisible": false,
+        "isHidden": false,
+        "isFading": false,
         "title": `Finished`,
         "text": `Chapter updated succesfully!`
       }
       setTimeout(function(){
         setNotification(notification);
       }, 1000);
+      setTimeout(function(){
+        setNotification({...notification, isHidden: true});
+      }, 5000);
       return(
         queryClient.invalidateQueries({ queryKey: ['books'] })
       )

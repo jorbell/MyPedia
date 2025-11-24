@@ -21,7 +21,8 @@ libraryRouter.get('/books', async (req, res) => {
 
 //Create a book
 libraryRouter.post('/books', async (req, res) => {
-  const newBook = Book.build({"name": req.body.newContent, "displayname": req.body.newContent})
+  console.log(req.body);
+  const newBook = Book.build({"name": req.body.name, "displayname": req.body.name})
   await newBook.save();
   const newChapter = Chapter.build({
     name: "First chapter",
