@@ -7,4 +7,5 @@ backend/database.sql
 backend/.env
 backend/build/*
 backend/build/*
+node_modules
 docker.env

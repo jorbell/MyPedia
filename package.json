@@ -1,0 +1,12 @@
+{
+  "name": "mypedia",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=@mypedia/backend",
+    "dev:frontend": "npm run dev --workspace=@mypedia/frontend"
+  }
+}
