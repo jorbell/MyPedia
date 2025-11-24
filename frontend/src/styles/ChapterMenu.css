@@ -1,21 +1,21 @@
 .chapter-menu {
   min-width: 250px;
-  max-width:250px;
+  max-width: 250px;
   background-color: #141414;
   height: 100%;
-  display:grid;
+  display: grid;
   grid-template-rows: 1fr auto;
 }
 .chapter-tools {
   p {
-    border-style:solid;
-    border-color:white;
-    border-width:1px;
-    padding-left:23px;
-    margin:1px;
-    font-size:30px;
-    color:white;
-    cursor:pointer;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    padding-left: 23px;
+    margin: 1px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
   }
 }
 .chapters-title {
@@ -23,24 +23,24 @@
   margin: 0;
 }
 .chapter-buttons {
-  overflow-y:scroll;
+  overflow-y: scroll;
   width: 250px;
   min-width: 250px;
   max-width: 250px;
   button {
-    cursor:pointer;
-    width:100%;
-    height:30px;
-    padding:3px;
-    font-size:  14px;
-    text-align:left;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    overflow:hidden;
+    cursor: pointer;
+    width: 100%;
+    height: 30px;
+    padding: 3px;
+    font-size: 14px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 .minimized {
-  display:grid;
+  display: grid;
   grid-template-rows: 1fr auto;
   width: 70px;
   min-width: 70px;
@@ -48,7 +48,7 @@
   height: var(--view-height);
   background-color: #141414;
   box-shadow: 0px var(--shadow-size) var(--shadow-size) var(--shadow-color);
-  float:left;
+  float: left;
 }
 
 .chapter-button {
@@ -64,7 +64,7 @@
   color: white;
 }
 
-.chapter-button.active{
+.chapter-button.active {
   background-color: #666;
   color: white;
 }

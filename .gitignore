@@ -9,3 +9,4 @@ backend/build/*
 backend/build/*
 node_modules
 docker.env
+*.md

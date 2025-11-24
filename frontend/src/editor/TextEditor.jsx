@@ -1,12 +1,12 @@
-import {Color} from '@tiptap/extension-color'
+import { Color } from '@tiptap/extension-color'
 import Table from '@tiptap/extension-table'
 import TableHeader from '@tiptap/extension-table-header'
 import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TextStyle from '@tiptap/extension-text-style'
-import {EditorContent, useEditor} from '@tiptap/react'
+import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React, {useState} from 'react'
+import { useState } from 'react'
 import EditorMenu from './EditorMenu'
 import '../styles/Editor.css'
 
@@ -18,8 +18,8 @@ const CustomTableCell = TableCell.extend({
       // and add a new one …
       backgroundColor: {
         default: null,
-        parseHTML: element => element.getAttribute('data-background-color'),
-        renderHTML: attributes => {
+        parseHTML: (element) => element.getAttribute('data-background-color'),
+        renderHTML: (attributes) => {
           return {
             'data-background-color': attributes.backgroundColor,
             style: `background-color: ${attributes.backgroundColor}`,
@@ -29,7 +29,7 @@ const CustomTableCell = TableCell.extend({
     }
   },
 })
-const TextEditor = ({chapter, handleSave}) => {
+const TextEditor = ({ chapter, handleSave }) => {
   const extensions = [
     Color.configure(),
     TextStyle.configure(),
@@ -45,24 +45,20 @@ const TextEditor = ({chapter, handleSave}) => {
 
   const editor = useEditor({
     extensions,
-    content:content,
-    onUpdate(){
+    content: content,
+    onUpdate() {
       setContent(editor.getHTML())
     },
   })
   return (
     <div className="editor">
-      <EditorMenu 
-        editor={editor} 
-        chapter={chapter} 
-        handleSave={handleSave} 
-      />
-      <EditorContent 
-        className="editor-content" 
-        editor={editor} 
-        spellCheck="false" 
+      <EditorMenu editor={editor} chapter={chapter} handleSave={handleSave} />
+      <EditorContent
+        className="editor-content"
+        editor={editor}
+        spellCheck="false"
       />
     </div>
   )
 }
-export default TextEditor;
+export default TextEditor

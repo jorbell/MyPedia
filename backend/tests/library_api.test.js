@@ -1,37 +1,36 @@
-const { test, after, beforeEach, describe } = require('node:test')
+const { test, beforeEach, describe } = require('node:test')
 const supertest = require('supertest')
 
-const {Book, Chapter} = require('../models/Library')
+const { Book, Chapter } = require('../models/Library')
 
 const app = require('../app')
-const api = (supertest(app))
+const api = supertest(app)
 
-describe('Library tests' , () => {
-  describe('Tests for books' , () => {
+describe('Library tests', () => {
+  describe('Tests for books', () => {
     beforeEach(async () => {
       await Chapter.destroy({
         where: {},
-        truncate:false
+        truncate: false,
       })
       await Book.destroy({
         where: {},
-        truncate:false
+        truncate: false,
       })
       const newBook = {
-        name: "Moro",
-        displayname: "Tere",
+        name: 'Moro',
+        displayname: 'Tere',
       }
       await Book.build(newBook).save()
       const books = await Book.findAll()
 
       const newChapter = {
-        name: "Moro",
+        name: 'Moro',
         bookid: books[0].id,
-        displayname: "Juuh",
-        content: "juuh"
+        displayname: 'Juuh',
+        content: 'juuh',
       }
       await Chapter.build(newChapter).save()
-
     })
     test('Books are returned as json', async () => {
       await api
@@ -40,7 +39,4 @@ describe('Library tests' , () => {
         .expect('Content-Type', /application\/json/)
     })
   })
-})
-after(async () => {
-  app.close(done)
 })

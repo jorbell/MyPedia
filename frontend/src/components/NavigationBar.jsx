@@ -1,13 +1,11 @@
-import { Link } from 'react-router-dom';
-import '../styles/NavigationBar.css';
+import { Link } from 'react-router-dom'
+import '../styles/NavigationBar.css'
 
 const PageLogo = () => {
   return (
-    <Link 
-      key="/"
-      to="/"
-      children="Library"
-      className='page-logo' />
+    <Link key="/" to="/" className="page-logo">
+      Library
+    </Link>
   )
 }
 const NavigationBar = () => {
@@ -18,4 +16,3 @@ const NavigationBar = () => {
   )
 }
 export default NavigationBar
-

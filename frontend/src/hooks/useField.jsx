@@ -1,4 +1,4 @@
-import {useState} from "react"
+import { useState } from 'react'
 
 const useField = (type, initialValue) => {
   const [value, setValue] = useState(initialValue)
@@ -11,8 +11,7 @@ const useField = (type, initialValue) => {
   }
   return {
     field: { type, value, onChange },
-    clear
+    clear,
   }
 }
 export default useField
-

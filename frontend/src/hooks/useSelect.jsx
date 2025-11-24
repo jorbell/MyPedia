@@ -1,11 +1,11 @@
-import {useEffect, useState} from "react"
+import { useEffect, useState } from 'react'
 const useSelect = (onChange, defaultValue, options, extraStyle) => {
   const [value, setValue] = useState(defaultValue)
 
   useEffect(() => {
     setValue(defaultValue)
-  },[defaultValue, setValue])
-  
+  }, [defaultValue, setValue])
+
   const handleOnChange = (event) => {
     setValue(event.target.value)
     onChange(event.target.value)
@@ -15,7 +15,7 @@ const useSelect = (onChange, defaultValue, options, extraStyle) => {
     onChange: handleOnChange,
     value,
     options,
-    extraStyle
+    extraStyle,
   }
 }
 export default useSelect
